@@ -279,8 +279,8 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	/**
 	 * Returns the thickness of the progress drawable.
 	 * 
-	 * @return The thickness of the progress drawable as an {@link Integer} in
-	 *         pixels
+	 * @return The thickness of the progress drawable in pixels as an
+	 *         {@link Integer}
 	 */
 	public final int getThickness() {
 		return thickness;
