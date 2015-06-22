@@ -19,6 +19,7 @@ License along with this program. If not, see
 -->
 <resources>
 
+    <dimen name="default_circular_progress_bar_size">48dp</dimen>
     <dimen name="default_circular_progress_bar_thickness">5dp</dimen>
 
 </resources>
