@@ -63,14 +63,14 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	private static final int MAX_DEGREES = 360;
 
 	/**
-	 * The width of the progress drawable.
-	 */
-	private final int width;
-
-	/**
 	 * The color of the progress drawable.
 	 */
 	private final int color;
+
+	/**
+	 * The thickness of the progress drawable.
+	 */
+	private final int thickness;
 
 	/**
 	 * The paint, which is used for drawing.
@@ -120,7 +120,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		paint = new Paint();
 		paint.setAntiAlias(true);
 		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(getWidth());
+		paint.setStrokeWidth(getThickness());
 		paint.setColor(getColor());
 	}
 
@@ -252,13 +252,13 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	 * 
 	 * @param color
 	 *            The color of the progress drawable as an {@link Integer} value
-	 * @param width
-	 *            The width of the progress drawable as an {@link Integer} value
-	 *            in pixels
+	 * @param thickness
+	 *            The thickness of the progress drawable as an {@link Integer}
+	 *            value in pixels
 	 */
-	public CircularProgressDrawable(final int color, final int width) {
+	public CircularProgressDrawable(final int color, final int thickness) {
 		this.color = color;
-		this.width = width;
+		this.thickness = thickness;
 		this.bounds = new RectF();
 		initializePaint();
 		initializeAnimations();
@@ -274,13 +274,13 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	}
 
 	/**
-	 * Returns the width of the progress drawable.
+	 * Returns the thickness of the progress drawable.
 	 * 
-	 * @return The width of the progress drawable as an {@link Integer} in
+	 * @return The thickness of the progress drawable as an {@link Integer} in
 	 *         pixels
 	 */
-	public final int getWidth() {
-		return width;
+	public final int getThickness() {
+		return thickness;
 	}
 
 	@Override
@@ -339,10 +339,10 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	@Override
 	protected final void onBoundsChange(final Rect bounds) {
 		super.onBoundsChange(bounds);
-		this.bounds.left = bounds.left + width / 2.0f + 0.5f;
-		this.bounds.right = bounds.right - width / 2.0f - 0.5f;
-		this.bounds.top = bounds.top + width / 2.0f + 0.5f;
-		this.bounds.bottom = bounds.bottom - width / 2.0f - 0.5f;
+		this.bounds.left = bounds.left + thickness / 2.0f + 0.5f;
+		this.bounds.right = bounds.right - thickness / 2.0f - 0.5f;
+		this.bounds.top = bounds.top + thickness / 2.0f + 0.5f;
+		this.bounds.bottom = bounds.bottom - thickness / 2.0f - 0.5f;
 	}
 
 }
