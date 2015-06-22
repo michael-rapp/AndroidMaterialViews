@@ -33,6 +33,8 @@ import android.util.Property;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
+import static de.mrapp.android.view.util.Condition.ensureAtLeast;
+
 /**
  * An animated drawable, which is used by the view {@link CircularProgressView}.
  * 
@@ -257,6 +259,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	 *            value in pixels
 	 */
 	public CircularProgressDrawable(final int color, final int thickness) {
+		ensureAtLeast(thickness, 1, "The thickness must be at least 1");
 		this.color = color;
 		this.thickness = thickness;
 		this.bounds = new RectF();
