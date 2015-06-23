@@ -338,6 +338,7 @@ public class FloatingActionButton extends RelativeLayout {
 	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")
 	public final void setColor(final int color) {
+		this.color = color;
 		OvalShape shape = new OvalShape();
 		ShapeDrawable drawable = new ShapeDrawable(shape);
 		drawable.getPaint().setColor(color);
