@@ -69,7 +69,7 @@ public class CircularProgressView extends View {
 	}
 
 	/**
-	 * Obtains all attributes from a specific attribute set.
+	 * Obtains the view's attributes from a specific attribute set.
 	 * 
 	 * @param attributeSet
 	 *            The attribute set, the view's attributes should be obtained
