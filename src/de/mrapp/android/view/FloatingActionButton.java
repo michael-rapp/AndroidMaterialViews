@@ -29,10 +29,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 /**
  * A floating action button, which has been designed according to the Material
@@ -46,7 +44,7 @@ import android.widget.ImageView;
  * 
  * @since 1.0.0
  */
-public class FloatingActionButton extends FrameLayout {
+public class FloatingActionButton extends RelativeLayout {
 
 	/**
 	 * Contains all possible sizes of a floating action button.
@@ -64,12 +62,6 @@ public class FloatingActionButton extends FrameLayout {
 		SMALL;
 
 	}
-
-	/**
-	 * The image view, which is used to show the floating action button's
-	 * shadow.
-	 */
-	private ImageView shadowImageView;
 
 	/**
 	 * The image button, which is used to show the floating action button's
@@ -111,28 +103,10 @@ public class FloatingActionButton extends FrameLayout {
 	 * Inflates the view's layout.
 	 */
 	private void inflateLayout() {
-		inflateShadowImageView();
-		inflateImageButton();
-	}
-
-	/**
-	 * Inflates the image view, which is used to show the floating action
-	 * button's shadow.
-	 */
-	private void inflateShadowImageView() {
-		shadowImageView = new ImageView(getContext());
-		addView(shadowImageView, LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT);
-	}
-
-	/**
-	 * Inflates the image button, which is used to show the floating action
-	 * button's background and icon.
-	 */
-	private void inflateImageButton() {
 		imageButton = new ImageButton(getContext());
 		LayoutParams layoutParams = new LayoutParams(0, 0);
-		layoutParams.gravity = Gravity.CENTER;
+		layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,
+				RelativeLayout.TRUE);
 		addView(imageButton, layoutParams);
 	}
 
@@ -141,8 +115,7 @@ public class FloatingActionButton extends FrameLayout {
 	 */
 	private void adaptShadow() {
 		if (getSize() == Size.NORMAL) {
-			shadowImageView
-					.setImageResource(R.drawable.floating_action_button_shadow_normal);
+			setBackgroundResource(R.drawable.floating_action_button_shadow_normal);
 		} else {
 			// TODO
 		}
