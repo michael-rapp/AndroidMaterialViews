@@ -136,6 +136,11 @@ public class FloatingActionButton extends RelativeLayout {
 	private int rippleColor;
 
 	/**
+	 * The color of the floating action button when it is disabled.
+	 */
+	private int disabledColor;
+
+	/**
 	 * Initializes the view.
 	 * 
 	 * @param attributeSet
@@ -174,6 +179,7 @@ public class FloatingActionButton extends RelativeLayout {
 				obtainSize(typedArray);
 				obtainColor(typedArray);
 				obtainRippleColor(typedArray);
+				obtainDisabledColor(typedArray);
 				obtainIcon(typedArray);
 			} finally {
 				typedArray.recycle();
@@ -210,7 +216,8 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
-	 * Obtains the floating action button's color from a specific typed array.
+	 * Obtains the floating action button's ripple color from a specific typed
+	 * array.
 	 * 
 	 * @param typedArray
 	 *            The typed array, the ripple color should be obtained from, as
@@ -222,6 +229,23 @@ public class FloatingActionButton extends RelativeLayout {
 				R.styleable.FloatingActionButton_rippleColor,
 				defaultRippleColor);
 		setRippleColor(value);
+	}
+
+	/**
+	 * Obtaines the floating action button's disabled color from a specific
+	 * typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the disabled color should be obtained from,
+	 *            as an instance of the class {@link TypedArray}
+	 */
+	private void obtainDisabledColor(final TypedArray typedArray) {
+		int defaultDisabledColor = getResources().getColor(
+				R.color.floating_action_button_disabled_color);
+		int value = typedArray.getColor(
+				R.styleable.FloatingActionButton_disabledColor,
+				defaultDisabledColor);
+		setDisabledColor(value);
 	}
 
 	/**
@@ -309,6 +333,54 @@ public class FloatingActionButton extends RelativeLayout {
 		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
 				new int[] { R.attr.colorControlHighlight });
 		return typedArray.getColor(0, 0);
+	}
+
+	/**
+	 * Creates a drawable, which can be used as the floating action button's
+	 * background, when it is disabled.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createDisabledBackgroundDrawable() {
+		return createBackgroundDrawable(getDisabledColor());
+	}
+
+	/**
+	 * Creates a drawable, which can be used as the floating action button's
+	 * background, depending on its color.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	@SuppressLint("NewApi")
+	private Drawable createBackgroundDrawable() {
+		Drawable drawable = createBackgroundDrawable(getColor());
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			RippleDrawable rippleDrawable = new RippleDrawable(
+					new ColorStateList(new int[][] { {} },
+							new int[] { getRippleColor() }), drawable, null);
+			return rippleDrawable;
+		} else {
+			return drawable;
+		}
+	}
+
+	/**
+	 * Creates a drawable with a specific color, which can be used as the
+	 * floating action button's background.
+	 * 
+	 * @param color
+	 *            The color of the background as an {@link Integer} value
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createBackgroundDrawable(final int color) {
+		OvalShape shape = new OvalShape();
+		ShapeDrawable drawable = new ShapeDrawable(shape);
+		drawable.getPaint().setColor(color);
+		return drawable;
 	}
 
 	/**
@@ -471,17 +543,9 @@ public class FloatingActionButton extends RelativeLayout {
 	@SuppressWarnings("deprecation")
 	public final void setColor(final int color) {
 		this.color = color;
-		OvalShape shape = new OvalShape();
-		ShapeDrawable drawable = new ShapeDrawable(shape);
-		drawable.getPaint().setColor(color);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			RippleDrawable rippleDrawable = new RippleDrawable(
-					new ColorStateList(new int[][] { {} },
-							new int[] { getRippleColor() }), drawable, null);
-			imageButton.setBackground(rippleDrawable);
-		} else {
-			imageButton.setBackgroundDrawable(drawable);
+		if (isEnabled()) {
+			imageButton.setBackgroundDrawable(createBackgroundDrawable());
 		}
 	}
 
@@ -502,9 +566,39 @@ public class FloatingActionButton extends RelativeLayout {
 	 * @param color
 	 *            The color, which should be set, as an {@link Integer} value
 	 */
+	@SuppressWarnings("deprecation")
 	public final void setRippleColor(final int color) {
 		this.rippleColor = color;
-		setColor(getColor());
+
+		if (isEnabled()) {
+			imageButton.setBackgroundDrawable(createBackgroundDrawable());
+		}
+	}
+
+	/**
+	 * Returns the color of the floating action button, when it is disabled.
+	 * 
+	 * @return The color of the floating action button, when it is disabled, as
+	 *         an {@link Integer} value
+	 */
+	public final int getDisabledColor() {
+		return disabledColor;
+	}
+
+	/**
+	 * Sets the color of the floating action button, when it is disabled.
+	 * 
+	 * @param color
+	 *            The color, which should be set, as an {@link Integer} value
+	 */
+	@SuppressWarnings("deprecation")
+	public final void setDisabledColor(final int color) {
+		this.disabledColor = color;
+
+		if (!isEnabled()) {
+			imageButton
+					.setBackgroundDrawable(createDisabledBackgroundDrawable());
+		}
 	}
 
 	@Override
@@ -515,6 +609,15 @@ public class FloatingActionButton extends RelativeLayout {
 	@Override
 	public final void setOnLongClickListener(final OnLongClickListener listener) {
 		imageButton.setOnLongClickListener(listener);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public final void setEnabled(final boolean enabled) {
+		super.setEnabled(enabled);
+		imageButton.setEnabled(enabled);
+		imageButton.setBackgroundDrawable(enabled ? createBackgroundDrawable()
+				: createDisabledBackgroundDrawable());
 	}
 
 	@Override
