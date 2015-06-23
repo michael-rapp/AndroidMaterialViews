@@ -244,7 +244,7 @@ public class FloatingActionButton extends RelativeLayout {
 		if (getSize() == Size.NORMAL) {
 			setBackgroundResource(R.drawable.floating_action_button_shadow_normal);
 		} else if (getSize() == Size.SMALL) {
-			// TODO
+			setBackgroundResource(R.drawable.floating_action_button_shadow_small);
 		} else {
 			// TODO
 		}
