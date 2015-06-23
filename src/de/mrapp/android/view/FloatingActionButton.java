@@ -24,8 +24,10 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -336,8 +338,8 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
-	 * Creates a drawable, which can be used as the floating action button's
-	 * background, when it is disabled.
+	 * Creates and returns a drawable, which can be used as the floating action
+	 * button's background, when it is disabled.
 	 * 
 	 * @return The drawable, which has been created, as an instance of the class
 	 *         {@link Drawable}
@@ -347,8 +349,21 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
-	 * Creates a drawable, which can be used as the floating action button's
-	 * background, depending on its color.
+	 * Creates and returns a drawable, which can be used a the floating action
+	 * button's background, when it is pressed.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createPressedBackgroundDrawable() {
+		Drawable drawable = createBackgroundDrawable(getColor());
+		Drawable hoverDrawable = createBackgroundDrawable(getRippleColor());
+		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
+	}
+
+	/**
+	 * Creates and returns a drawable, which can be used as the floating action
+	 * button's background, depending on its color.
 	 * 
 	 * @return The drawable, which has been created, as an instance of the class
 	 *         {@link Drawable}
@@ -363,13 +378,18 @@ public class FloatingActionButton extends RelativeLayout {
 							new int[] { getRippleColor() }), drawable, null);
 			return rippleDrawable;
 		} else {
-			return drawable;
+			StateListDrawable stateListDrawable = new StateListDrawable();
+			stateListDrawable.addState(
+					new int[] { android.R.attr.state_pressed },
+					createPressedBackgroundDrawable());
+			stateListDrawable.addState(new int[] {}, drawable);
+			return stateListDrawable;
 		}
 	}
 
 	/**
-	 * Creates a drawable with a specific color, which can be used as the
-	 * floating action button's background.
+	 * Creates and returns a drawable with a specific color, which can be used
+	 * as the floating action button's background.
 	 * 
 	 * @param color
 	 *            The color of the background as an {@link Integer} value
