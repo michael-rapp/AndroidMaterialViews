@@ -19,20 +19,6 @@ License along with this program. If not, see
 -->
 <resources>
 
-    <declare-styleable name="CircularProgressBar">
-        <attr name="android:thickness" />
-        <attr name="android:color" />
-    </declare-styleable>
-    <declare-styleable name="FloatingActionButton">
-        <attr name="android:icon" />
-        <attr name="android:color" />
-        <attr name="rippleColor" format="color" />
-        <attr name="disabledColor" format="color" />
-        <attr name="size" format="enum">
-            <enum name="normal" value="0" />
-            <enum name="small" value="1" />
-            <enum name="large" value="2" />
-        </attr>
-    </declare-styleable>
+    <color name="floating_action_button_disabled_color">#ffd2d2d2</color>
 
 </resources>
