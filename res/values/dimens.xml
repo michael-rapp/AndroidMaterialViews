@@ -19,7 +19,10 @@ License along with this program. If not, see
 -->
 <resources>
 
-    <dimen name="default_circular_progress_bar_size">48dp</dimen>
-    <dimen name="default_circular_progress_bar_thickness">5dp</dimen>
+    <dimen name="circular_progress_bar_size_normal">48dp</dimen>
+    <dimen name="circular_progress_bar_thickness_normal">5dp</dimen>
+    <dimen name="floating_action_button_size_normal">56dp</dimen>
+    <dimen name="floating_action_button_size_small">40dp</dimen>
+    <dimen name="floating_action_button_shadow_size">16dp</dimen>
 
 </resources>
