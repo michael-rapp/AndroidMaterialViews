@@ -54,12 +54,57 @@ public class FloatingActionButton extends RelativeLayout {
 		/**
 		 * A floating action button's normal size.
 		 */
-		NORMAL,
+		NORMAL(0),
 
 		/**
 		 * A floating action button's small size.
 		 */
-		SMALL;
+		SMALL(1);
+
+		/**
+		 * The value, which represents the size.
+		 */
+		private final int value;
+
+		/**
+		 * Creates a new size of a floating action button.
+		 * 
+		 * @param value
+		 *            The value, which represents the size, as an
+		 *            {@link Integer} value
+		 */
+		private Size(final int value) {
+			this.value = value;
+		}
+
+		/**
+		 * Returns the value, which represents the size.
+		 * 
+		 * @return The value, which represents the size, as an {@link Integer}
+		 *         value
+		 */
+		protected int getValue() {
+			return value;
+		}
+
+		/**
+		 * Returns the size, which corresponds to a specific value.
+		 * 
+		 * @param value
+		 *            The value, which represents the size, as an
+		 *            {@link Integer} value
+		 * @return The size, which corresponds to the given value, as a value of
+		 *         the enum {@link Size}
+		 */
+		protected static Size fromValue(final int value) {
+			for (Size currentSize : values()) {
+				if (currentSize.value == value) {
+					return currentSize;
+				}
+			}
+
+			throw new IllegalArgumentException("Invalid enum value: " + value);
+		}
 
 	}
 
@@ -94,9 +139,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void initialize(final AttributeSet attributeSet) {
 		inflateLayout();
-		setSize(Size.NORMAL);
-		setColor(getAccentColor());
-		setRippleColor(getHighlightColor());
+		obtainStyledAttributes(attributeSet);
 	}
 
 	/**
@@ -108,6 +151,85 @@ public class FloatingActionButton extends RelativeLayout {
 		layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,
 				RelativeLayout.TRUE);
 		addView(imageButton, layoutParams);
+	}
+
+	/**
+	 * Obtains the view's attributes from a specific attribute set.
+	 * 
+	 * @param attributeSet
+	 *            The attribute set, the view's attributes should be obtained
+	 *            from, as an instance of the type {@link AttributeSet}
+	 */
+	private void obtainStyledAttributes(final AttributeSet attributeSet) {
+		if (attributeSet != null) {
+			TypedArray typedArray = getContext().obtainStyledAttributes(
+					attributeSet, R.styleable.FloatingActionButton);
+
+			try {
+				obtainSize(typedArray);
+				obtainColor(typedArray);
+				obtainRippleColor(typedArray);
+				obtainIcon(typedArray);
+			} finally {
+				typedArray.recycle();
+			}
+		}
+	}
+
+	/**
+	 * Obtains the floating action button's size from a specific typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the color should be obtained from, as an
+	 *            instance of the class {@link TypedArray}
+	 */
+	private void obtainSize(final TypedArray typedArray) {
+		Size defaultSize = Size.NORMAL;
+		int value = typedArray.getInt(R.styleable.FloatingActionButton_size,
+				defaultSize.getValue());
+		setSize(Size.fromValue(value));
+	}
+
+	/**
+	 * Obtains the floating action button's color from a specific typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the color should be obtained from, as an
+	 *            instance of the class {@link TypedArray}
+	 */
+	private void obtainColor(final TypedArray typedArray) {
+		int defaultColor = getAccentColor();
+		int value = typedArray.getColor(
+				R.styleable.FloatingActionButton_android_color, defaultColor);
+		setColor(value);
+	}
+
+	/**
+	 * Obtains the floating action button's color from a specific typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the ripple color should be obtained from, as
+	 *            an instance of the class {@link TypedArray}
+	 */
+	private void obtainRippleColor(final TypedArray typedArray) {
+		int defaultRippleColor = getHighlightColor();
+		int value = typedArray.getColor(
+				R.styleable.FloatingActionButton_rippleColor,
+				defaultRippleColor);
+		setRippleColor(value);
+	}
+
+	/**
+	 * Obtains the floating action button's icon from a specific typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the ripple color should be obtained from, as
+	 *            an instance of the class {@link TypedArray}
+	 */
+	private void obtainIcon(final TypedArray typedArray) {
+		Drawable icon = typedArray
+				.getDrawable(R.styleable.FloatingActionButton_android_icon);
+		setIcon(icon);
 	}
 
 	/**
