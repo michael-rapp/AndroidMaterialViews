@@ -112,7 +112,7 @@ public class CircularProgressView extends View {
 	private void obtainThickness(final TypedArray typedArray) {
 		int defaultThickness = getContext().getResources()
 				.getDimensionPixelSize(
-						R.dimen.circular_progress_bar_size_normal);
+						R.dimen.circular_progress_bar_thickness_normal);
 		thickness = typedArray.getDimensionPixelSize(
 				R.styleable.CircularProgressBar_android_thickness,
 				defaultThickness);
