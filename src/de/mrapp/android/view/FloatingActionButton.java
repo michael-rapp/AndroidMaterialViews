@@ -336,31 +336,7 @@ public class FloatingActionButton extends RelativeLayout {
 				new int[] { R.attr.colorControlHighlight });
 		return typedArray.getColor(0, 0);
 	}
-
-	/**
-	 * Creates and returns a drawable, which can be used as the floating action
-	 * button's background, when it is disabled.
-	 * 
-	 * @return The drawable, which has been created, as an instance of the class
-	 *         {@link Drawable}
-	 */
-	private Drawable createDisabledBackgroundDrawable() {
-		return createBackgroundDrawable(getDisabledColor());
-	}
-
-	/**
-	 * Creates and returns a drawable, which can be used a the floating action
-	 * button's background, when it is pressed.
-	 * 
-	 * @return The drawable, which has been created, as an instance of the class
-	 *         {@link Drawable}
-	 */
-	private Drawable createPressedBackgroundDrawable() {
-		Drawable drawable = createBackgroundDrawable(getColor());
-		Drawable hoverDrawable = createBackgroundDrawable(getRippleColor());
-		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
-	}
-
+	
 	/**
 	 * Creates and returns a drawable, which can be used as the floating action
 	 * button's background, depending on its color.
@@ -385,6 +361,32 @@ public class FloatingActionButton extends RelativeLayout {
 			stateListDrawable.addState(new int[] {}, drawable);
 			return stateListDrawable;
 		}
+	}
+
+	/**
+	 * Creates and returns a drawable, which can be used as the floating action
+	 * button's background, when it is disabled.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createDisabledBackgroundDrawable() {
+		Drawable drawable = createBackgroundDrawable(getColor());
+		Drawable hoverDrawable = createBackgroundDrawable(getDisabledColor());
+		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
+	}
+
+	/**
+	 * Creates and returns a drawable, which can be used a the floating action
+	 * button's background, when it is pressed.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createPressedBackgroundDrawable() {
+		Drawable drawable = createBackgroundDrawable(getColor());
+		Drawable hoverDrawable = createBackgroundDrawable(getRippleColor());
+		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
 	}
 
 	/**
