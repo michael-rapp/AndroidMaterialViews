@@ -25,6 +25,7 @@ License along with this program. If not, see
     <dimen name="circular_progress_bar_thickness_small">3dp</dimen>
     <dimen name="floating_action_button_size_normal">56dp</dimen>
     <dimen name="floating_action_button_size_small">40dp</dimen>
+    <dimen name="floating_action_button_size_large">92dp</dimen>
     <dimen name="floating_action_button_shadow_size">16dp</dimen>
 
 </resources>

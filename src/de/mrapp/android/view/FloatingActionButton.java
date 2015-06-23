@@ -59,7 +59,12 @@ public class FloatingActionButton extends RelativeLayout {
 		/**
 		 * A floating action button's small size.
 		 */
-		SMALL(1);
+		SMALL(1),
+
+		/**
+		 * A floating action button's large size.
+		 */
+		LARGE(2);
 
 		/**
 		 * The value, which represents the size.
@@ -238,6 +243,8 @@ public class FloatingActionButton extends RelativeLayout {
 	private void adaptShadow() {
 		if (getSize() == Size.NORMAL) {
 			setBackgroundResource(R.drawable.floating_action_button_shadow_normal);
+		} else if (getSize() == Size.SMALL) {
+			// TODO
 		} else {
 			// TODO
 		}
@@ -269,9 +276,12 @@ public class FloatingActionButton extends RelativeLayout {
 		if (getSize() == Size.NORMAL) {
 			return getResources().getDimensionPixelSize(
 					R.dimen.floating_action_button_size_normal);
-		} else {
+		} else if (getSize() == Size.SMALL) {
 			return getResources().getDimensionPixelSize(
 					R.dimen.floating_action_button_size_small);
+		} else {
+			return getResources().getDimensionPixelSize(
+					R.dimen.floating_action_button_size_large);
 		}
 	}
 
