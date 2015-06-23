@@ -31,6 +31,10 @@ import de.mrapp.android.view.drawable.CircularProgressDrawable;
  * A circular progress bar, which has been designed according to the Material
  * design guidelines.
  * 
+ * Refer to http://www.google.com/design/spec/components/progress-activity.html#
+ * progress-activity-types-of-indicators for further information on the Material
+ * design guidelines.
+ * 
  * @author Michael Rapp
  * 
  * @since 1.0.0
