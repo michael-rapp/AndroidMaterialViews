@@ -159,6 +159,9 @@ public class FloatingActionButton extends RelativeLayout {
 	private void initialize(final AttributeSet attributeSet) {
 		inflateLayout();
 		obtainStyledAttributes(attributeSet);
+		adaptShadow();
+		adaptImageButtonSize();
+		adaptImageButtonBackground();
 	}
 
 	/**
@@ -206,9 +209,8 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainSize(final TypedArray typedArray) {
 		Size defaultSize = Size.NORMAL;
-		int value = typedArray.getInt(R.styleable.FloatingActionButton_size,
-				defaultSize.getValue());
-		setSize(Size.fromValue(value));
+		size = Size.fromValue(typedArray.getInt(
+				R.styleable.FloatingActionButton_size, defaultSize.getValue()));
 	}
 
 	/**
@@ -220,9 +222,8 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainColor(final TypedArray typedArray) {
 		int defaultColor = getAccentColor();
-		int value = typedArray.getColor(
+		color = typedArray.getColor(
 				R.styleable.FloatingActionButton_android_color, defaultColor);
-		setColor(value);
 	}
 
 	/**
@@ -235,10 +236,9 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainActivatedColor(final TypedArray typedArray) {
 		int defaultActivatedColor = getControlActivatedColor();
-		int value = typedArray.getColor(
+		activatedColor = typedArray.getColor(
 				R.styleable.FloatingActionButton_activatedColor,
 				defaultActivatedColor);
-		setActivatedColor(value);
 	}
 
 	/**
@@ -251,10 +251,9 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainPressedColor(final TypedArray typedArray) {
 		int defaultPressedColor = getControlHighlightColor();
-		int value = typedArray.getColor(
+		pressedColor = typedArray.getColor(
 				R.styleable.FloatingActionButton_pressedColor,
 				defaultPressedColor);
-		setPressedColor(value);
 	}
 
 	/**
@@ -268,10 +267,9 @@ public class FloatingActionButton extends RelativeLayout {
 	private void obtainDisabledColor(final TypedArray typedArray) {
 		int defaultDisabledColor = getResources().getColor(
 				R.color.floating_action_button_disabled_color);
-		int value = typedArray.getColor(
+		disabledColor = typedArray.getColor(
 				R.styleable.FloatingActionButton_disabledColor,
 				defaultDisabledColor);
-		setDisabledColor(value);
 	}
 
 	/**
