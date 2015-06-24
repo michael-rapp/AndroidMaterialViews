@@ -133,6 +133,12 @@ public class FloatingActionButton extends RelativeLayout {
 
 	/**
 	 * The color, which is used as an overlay, when the floating action button
+	 * is activated.
+	 */
+	private int activatedColor;
+
+	/**
+	 * The color, which is used as an overlay, when the floating action button
 	 * is pressed.
 	 */
 	private int pressedColor;
@@ -181,6 +187,7 @@ public class FloatingActionButton extends RelativeLayout {
 			try {
 				obtainSize(typedArray);
 				obtainColor(typedArray);
+				obtainActivatedColor(typedArray);
 				obtainPressedColor(typedArray);
 				obtainDisabledColor(typedArray);
 				obtainIcon(typedArray);
@@ -219,6 +226,22 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
+	 * Obtains the floating action button's activated color from a specific
+	 * typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the activated color should be obtained from,
+	 *            as an instance of the class {@link TypedArray}
+	 */
+	private void obtainActivatedColor(final TypedArray typedArray) {
+		int defaultActivatedColor = getControlActivatedColor();
+		int value = typedArray.getColor(
+				R.styleable.FloatingActionButton_activatedColor,
+				defaultActivatedColor);
+		setActivatedColor(value);
+	}
+
+	/**
 	 * Obtains the floating action button's pressed color from a specific typed
 	 * array.
 	 * 
@@ -227,7 +250,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            an instance of the class {@link TypedArray}
 	 */
 	private void obtainPressedColor(final TypedArray typedArray) {
-		int defaultPressedColor = getHighlightColor();
+		int defaultPressedColor = getControlHighlightColor();
 		int value = typedArray.getColor(
 				R.styleable.FloatingActionButton_pressedColor,
 				defaultPressedColor);
@@ -330,10 +353,39 @@ public class FloatingActionButton extends RelativeLayout {
 					createPressedBackgroundDrawable());
 		}
 
+		drawable.addState(new int[] { android.R.attr.state_enabled,
+				android.R.attr.state_activated },
+				createActivatedBackgroundDrawable());
 		drawable.addState(new int[] { android.R.attr.state_enabled },
 				createBackgroundDrawable(getColor()));
 		drawable.addState(new int[] {}, createDisabledBackgroundDrawable());
 		return drawable;
+	}
+
+	/**
+	 * Creates and returns a drawable, which can be used as the floating action
+	 * button's background, when it is activated.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createActivatedBackgroundDrawable() {
+		Drawable drawable = createBackgroundDrawable(getColor());
+		Drawable hoverDrawable = createBackgroundDrawable(getActivatedColor());
+		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
+	}
+
+	/**
+	 * Creates and returns a drawable, which can be used as the floating action
+	 * button's background, when it is pressed.
+	 * 
+	 * @return The drawable, which has been created, as an instance of the class
+	 *         {@link Drawable}
+	 */
+	private Drawable createPressedBackgroundDrawable() {
+		Drawable drawable = createBackgroundDrawable(getColor());
+		Drawable hoverDrawable = createBackgroundDrawable(getPressedColor());
+		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
 	}
 
 	/**
@@ -346,19 +398,6 @@ public class FloatingActionButton extends RelativeLayout {
 	private Drawable createDisabledBackgroundDrawable() {
 		Drawable drawable = createBackgroundDrawable(getColor());
 		Drawable hoverDrawable = createBackgroundDrawable(getDisabledColor());
-		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
-	}
-
-	/**
-	 * Creates and returns a drawable, which can be used a the floating action
-	 * button's background, when it is pressed.
-	 * 
-	 * @return The drawable, which has been created, as an instance of the class
-	 *         {@link Drawable}
-	 */
-	private Drawable createPressedBackgroundDrawable() {
-		Drawable drawable = createBackgroundDrawable(getColor());
-		Drawable hoverDrawable = createBackgroundDrawable(getPressedColor());
 		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
 	}
 
@@ -418,9 +457,23 @@ public class FloatingActionButton extends RelativeLayout {
 	 *         <code>R.attr.colorControlHighlight</code> as an {@link Integer}
 	 *         value
 	 */
-	private int getHighlightColor() {
+	private int getControlHighlightColor() {
 		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
 				new int[] { R.attr.colorControlHighlight });
+		return typedArray.getColor(0, 0);
+	}
+
+	/**
+	 * Returns the color of the theme attribute
+	 * <code>R.attr.colorControlActivated</code>.
+	 * 
+	 * @return The color of the theme attribute
+	 *         <code>R.attr.colorControlActivated</code> as an {@link Integer}
+	 *         value
+	 */
+	private int getControlActivatedColor() {
+		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
+				new int[] { R.attr.colorControlActivated });
 		return typedArray.getColor(0, 0);
 	}
 
@@ -582,6 +635,29 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	public final void setColor(final int color) {
 		this.color = color;
+		adaptImageButtonBackground();
+	}
+
+	/**
+	 * Returns the color, which is used as an overlay, when the floating action
+	 * button is activated.
+	 * 
+	 * @return The color, which is used as an overlay, when the floating action
+	 *         button is activated, as an {@link Integer} value
+	 */
+	public final int getActivatedColor() {
+		return activatedColor;
+	}
+
+	/**
+	 * Sets the color, which should be used as an overlay, when the floating
+	 * action button is activated.
+	 * 
+	 * @param color
+	 *            The color, which should be set, as an {@link Integer} value
+	 */
+	public final void setActivatedColor(final int color) {
+		this.activatedColor = color;
 		adaptImageButtonBackground();
 	}
 
