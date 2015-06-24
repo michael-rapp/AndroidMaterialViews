@@ -18,6 +18,7 @@
 package de.mrapp.android.view;
 
 import static de.mrapp.android.view.util.Condition.ensureNotNull;
+import static de.mrapp.android.view.util.Condition.ensureAtLeast;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.annotation.SuppressLint;
@@ -156,7 +157,13 @@ public class FloatingActionButton extends RelativeLayout {
 	private int disabledColor;
 
 	/**
-	 * The animator, which is used to change the visibility of the floating
+	 * The duration of the animation, which may be used to change the visibility
+	 * of the floating action button, in milliseconds.
+	 */
+	private long visibilityAnimationDuration;
+
+	/**
+	 * The animator, which may be used to change the visibility of the floating
 	 * action button.
 	 */
 	private ViewPropertyAnimator visibilityAnimator;
@@ -206,6 +213,7 @@ public class FloatingActionButton extends RelativeLayout {
 				obtainPressedColor(typedArray);
 				obtainDisabledColor(typedArray);
 				obtainIcon(typedArray);
+				obtainVisibilityAnimationDuration(typedArray);
 			} finally {
 				typedArray.recycle();
 			}
@@ -295,6 +303,23 @@ public class FloatingActionButton extends RelativeLayout {
 		Drawable icon = typedArray
 				.getDrawable(R.styleable.FloatingActionButton_android_icon);
 		setIcon(icon);
+	}
+
+	/**
+	 * Obtains the duration of the animation, which may be used to changed the
+	 * visibility of the floating action button, from a specific typed array.
+	 * 
+	 * @param typedArray
+	 *            The typed array, the animation duration should be obtained
+	 *            from, as an instance of the class {@link TypedArray}
+	 */
+	private void obtainVisibilityAnimationDuration(final TypedArray typedArray) {
+		int defaultAnimationDuration = getResources().getInteger(
+				R.integer.floating_action_button_visibility_animation_duration);
+		int duration = typedArray.getInteger(
+				R.styleable.FloatingActionButton_visibilityAnimationDuration,
+				defaultAnimationDuration);
+		setVisibilityAnimationDuration(duration);
 	}
 
 	/**
@@ -786,6 +811,30 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
+	 * Returns the duration of the animation, which may be used to change the
+	 * visibility of the floating action button.
+	 * 
+	 * @return The duration of the animation in milliseconds as a {@link Long}
+	 *         value
+	 */
+	public final long getVisibilityAnimationDuration() {
+		return visibilityAnimationDuration;
+	}
+
+	/**
+	 * Sets the duration of the animation, which may be used to change the
+	 * visibility of the floating action button.
+	 * 
+	 * @param duration
+	 *            The duration, which should be set, in milliseconds as a
+	 *            {@link Long} value
+	 */
+	public final void setVisibilityAnimationDuration(final long duration) {
+		ensureAtLeast(duration, 0, "The animation duration must be at least 0");
+		this.visibilityAnimationDuration = duration;
+	}
+
+	/**
 	 * Sets the visibility of the floating action button.
 	 * 
 	 * @param visibility
@@ -802,7 +851,8 @@ public class FloatingActionButton extends RelativeLayout {
 				visibilityAnimator.cancel();
 			}
 
-			visibilityAnimator = animateVisibility(visibility, 2000L);
+			visibilityAnimator = animateVisibility(visibility,
+					getVisibilityAnimationDuration());
 		} else {
 			setVisibility(visibility);
 		}
