@@ -18,6 +18,8 @@
 package de.mrapp.android.view;
 
 import static de.mrapp.android.view.util.Condition.ensureNotNull;
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -31,6 +33,10 @@ import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -148,6 +154,12 @@ public class FloatingActionButton extends RelativeLayout {
 	 * is disabled.
 	 */
 	private int disabledColor;
+
+	/**
+	 * The animator, which is used to change the visibility of the floating
+	 * action button.
+	 */
+	private ViewPropertyAnimator visibilityAnimator;
 
 	/**
 	 * Initializes the view.
@@ -476,6 +488,74 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
+	 * Animates changing the visibility of the floating action button.
+	 * 
+	 * @param visibility
+	 *            The visibility, which should be set, as an {@link Integer}
+	 *            value. The visibility may be <code>View.VISIBLE</code>,
+	 *            <code>View.INVISIBLE</code> or <code>View.GONE</code>
+	 * @param duration
+	 *            The duration of the animation in milliseconds as a
+	 *            {@link Long} value
+	 * @return The animator, which is used to change the visibility, as an
+	 *         instance of the class {@link ViewPropertyAnimator}
+	 */
+	private ViewPropertyAnimator animateVisibility(final int visibility,
+			final long duration) {
+		AnimatorListener listener = createVisibilityAnimatorListener(visibility);
+		int targetScale = visibility == View.VISIBLE ? 1 : 0;
+		long animationDuration = Math.round(Math.abs(getScaleX() - targetScale)
+				* duration);
+		Interpolator interpolator = new AccelerateDecelerateInterpolator();
+		return animate().setInterpolator(interpolator).scaleX(targetScale)
+				.scaleY(targetScale).setDuration(animationDuration)
+				.setListener(listener);
+	}
+
+	/**
+	 * Creates and returns a listener, which allows to adapt the visibility of
+	 * the floating action button, depending on the progress of an animation,
+	 * which is used to change the visibility.
+	 * 
+	 * @param visibility
+	 *            The visibility, which is set by the observed animation, as an
+	 *            {@link Integer} value. The visibility may be
+	 *            <code>View.VISIBLE</code>, <code>View.INVISIBLE</code> or
+	 *            <code>View.GONE</code>
+	 * @return The listener, which has been created, as an instance of the type
+	 *         {@link AnimatorListener}
+	 */
+	private AnimatorListener createVisibilityAnimatorListener(
+			final int visibility) {
+		return new AnimatorListener() {
+
+			@Override
+			public void onAnimationStart(final Animator animation) {
+				if (visibility == View.VISIBLE) {
+					setVisibility(visibility);
+				}
+			}
+
+			@Override
+			public void onAnimationRepeat(final Animator animation) {
+				return;
+			}
+
+			@Override
+			public void onAnimationEnd(final Animator animation) {
+				setVisibility(visibility);
+				visibilityAnimator = null;
+			}
+
+			@Override
+			public void onAnimationCancel(final Animator animation) {
+				visibilityAnimator = null;
+			}
+
+		};
+	}
+
+	/**
 	 * Creates a new floating action button, which has been designed according
 	 * to the Material design guidelines.
 	 * 
@@ -705,6 +785,29 @@ public class FloatingActionButton extends RelativeLayout {
 		adaptImageButtonBackground();
 	}
 
+	/**
+	 * Sets the visibility of the floating action button.
+	 * 
+	 * @param visibility
+	 *            The visibility, which should be set, as an {@link Integer}
+	 *            value. The visibility may be <code>View.VISIBLE</code>,
+	 *            <code>View.INVISIBLE</code> or <code>View.GONE</code>
+	 * @param animate
+	 *            True, if changing the visibility should be animated, false
+	 *            otherwise
+	 */
+	public final void setVisibility(final int visibility, final boolean animate) {
+		if (animate) {
+			if (visibilityAnimator != null) {
+				visibilityAnimator.cancel();
+			}
+
+			visibilityAnimator = animateVisibility(visibility, 2000L);
+		} else {
+			setVisibility(visibility);
+		}
+	}
+
 	@Override
 	public final void setOnClickListener(final OnClickListener listener) {
 		imageButton.setOnClickListener(listener);
@@ -725,10 +828,17 @@ public class FloatingActionButton extends RelativeLayout {
 	protected final void onMeasure(final int widthMeasureSpec,
 			final int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		int shadowSize = getResources().getDimensionPixelSize(
-				R.dimen.floating_action_button_shadow_size);
-		int pixelSize = getPixelSize() + shadowSize;
-		setMeasuredDimension(pixelSize, pixelSize);
+
+		if (visibilityAnimator == null) {
+			if (getVisibility() == View.VISIBLE) {
+				int shadowSize = getResources().getDimensionPixelSize(
+						R.dimen.floating_action_button_shadow_size);
+				int pixelSize = getPixelSize() + shadowSize;
+				setMeasuredDimension(pixelSize, pixelSize);
+			} else {
+				setMeasuredDimension(0, 0);
+			}
+		}
 	}
 
 }
