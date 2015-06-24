@@ -132,13 +132,14 @@ public class FloatingActionButton extends RelativeLayout {
 	private int color;
 
 	/**
-	 * The color of the ripple effect, which is shown when the floating action
-	 * button is pressed on Lollipop devices.
+	 * The color, which is used as an overlay, when the floating action button
+	 * is pressed.
 	 */
-	private int rippleColor;
+	private int pressedColor;
 
 	/**
-	 * The color of the floating action button when it is disabled.
+	 * The color, which is used as an overlay, when the floating action button
+	 * is disabled.
 	 */
 	private int disabledColor;
 
@@ -180,7 +181,7 @@ public class FloatingActionButton extends RelativeLayout {
 			try {
 				obtainSize(typedArray);
 				obtainColor(typedArray);
-				obtainRippleColor(typedArray);
+				obtainPressedColor(typedArray);
 				obtainDisabledColor(typedArray);
 				obtainIcon(typedArray);
 			} finally {
@@ -218,19 +219,19 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
-	 * Obtains the floating action button's ripple color from a specific typed
+	 * Obtains the floating action button's pressed color from a specific typed
 	 * array.
 	 * 
 	 * @param typedArray
-	 *            The typed array, the ripple color should be obtained from, as
+	 *            The typed array, the pressed color should be obtained from, as
 	 *            an instance of the class {@link TypedArray}
 	 */
-	private void obtainRippleColor(final TypedArray typedArray) {
-		int defaultRippleColor = getHighlightColor();
+	private void obtainPressedColor(final TypedArray typedArray) {
+		int defaultPressedColor = getHighlightColor();
 		int value = typedArray.getColor(
-				R.styleable.FloatingActionButton_rippleColor,
-				defaultRippleColor);
-		setRippleColor(value);
+				R.styleable.FloatingActionButton_pressedColor,
+				defaultPressedColor);
+		setPressedColor(value);
 	}
 
 	/**
@@ -304,14 +305,13 @@ public class FloatingActionButton extends RelativeLayout {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			RippleDrawable rippleDrawable = new RippleDrawable(
 					new ColorStateList(new int[][] { {} },
-							new int[] { getRippleColor() }), stateListDrawable,
-					null);
+							new int[] { getPressedColor() }),
+					stateListDrawable, null);
 			imageButton.setBackground(rippleDrawable);
 		} else {
 			imageButton.setBackgroundDrawable(stateListDrawable);
 		}
 	}
-
 
 	/**
 	 * Creates and returns a state list drawable, which can be used as the
@@ -358,7 +358,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private Drawable createPressedBackgroundDrawable() {
 		Drawable drawable = createBackgroundDrawable(getColor());
-		Drawable hoverDrawable = createBackgroundDrawable(getRippleColor());
+		Drawable hoverDrawable = createBackgroundDrawable(getPressedColor());
 		return new LayerDrawable(new Drawable[] { drawable, hoverDrawable });
 	}
 
@@ -377,7 +377,7 @@ public class FloatingActionButton extends RelativeLayout {
 		drawable.getPaint().setColor(color);
 		return drawable;
 	}
-	
+
 	/**
 	 * Returns the size of the floating action button in pixels, depending on
 	 * its current size.
@@ -586,39 +586,42 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	/**
-	 * Returns the color of the ripple effect, which is shown when the floating
-	 * action button is pressed on Lollipop devices.
+	 * Returns the color, which is used as an overlay, when the floating action
+	 * button is pressed.
 	 * 
-	 * @return The color of the ripple effect as an {@link Integer} value
+	 * @return The color, which is used as an overlay, when the floating action
+	 *         button is pressed, as an {@link Integer} value
 	 */
-	public final int getRippleColor() {
-		return rippleColor;
+	public final int getPressedColor() {
+		return pressedColor;
 	}
 
 	/**
-	 * Sets the color of the ripple effect, which should be shown when the
-	 * floating action button is pressed on Lollipop devices.
+	 * Sets the color, which should be used as an overlay, when the floating
+	 * action button is pressed.
 	 * 
 	 * @param color
 	 *            The color, which should be set, as an {@link Integer} value
 	 */
-	public final void setRippleColor(final int color) {
-		this.rippleColor = color;
+	public final void setPressedColor(final int color) {
+		this.pressedColor = color;
 		adaptImageButtonBackground();
 	}
 
 	/**
-	 * Returns the color of the floating action button, when it is disabled.
+	 * Returns the color, which is used as an overlay, when the floating action
+	 * button is disabled.
 	 * 
-	 * @return The color of the floating action button, when it is disabled, as
-	 *         an {@link Integer} value
+	 * @return The color, which is used as an overlay, when the floating action
+	 *         button is disabled, as an {@link Integer} value
 	 */
 	public final int getDisabledColor() {
 		return disabledColor;
 	}
 
 	/**
-	 * Sets the color of the floating action button, when it is disabled.
+	 * Sets the color, which should be used as an overlay, when the floating
+	 * action button is disabled.
 	 * 
 	 * @param color
 	 *            The color, which should be set, as an {@link Integer} value

@@ -26,7 +26,7 @@ License along with this program. If not, see
     <declare-styleable name="FloatingActionButton">
         <attr name="android:icon" />
         <attr name="android:color" />
-        <attr name="rippleColor" format="color" />
+        <attr name="pressedColor" format="color" />
         <attr name="disabledColor" format="color" />
         <attr name="size" format="enum">
             <enum name="normal" value="0" />
