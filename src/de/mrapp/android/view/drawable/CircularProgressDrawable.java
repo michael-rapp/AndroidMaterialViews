@@ -85,14 +85,14 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	private RectF bounds;
 
 	/**
-	 * The sweep animation.
+	 * The sweep animator.
 	 */
-	private ObjectAnimator sweepAnimation;
+	private ObjectAnimator sweepAnimator;
 
 	/**
-	 * The angle animation.
+	 * The angle animator.
 	 */
-	private ObjectAnimator angleAnimation;
+	private ObjectAnimator angleAnimator;
 
 	/**
 	 * The current angle of the sweep animation.
@@ -127,23 +127,23 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	}
 
 	/**
-	 * Initializes the animations.
+	 * Initializes the animators.
 	 */
-	private void initializeAnimations() {
-		initializeAngleAnimation();
-		initializeSweepAnimation();
+	private void initializeAnimators() {
+		initializeAngleAnimator();
+		initializeSweepAnimator();
 	}
 
 	/**
-	 * Initializes the angle animation.
+	 * Initializes the angle animator.
 	 */
-	private void initializeAngleAnimation() {
-		angleAnimation = ObjectAnimator.ofFloat(this, createAngleProperty(),
+	private void initializeAngleAnimator() {
+		angleAnimator = ObjectAnimator.ofFloat(this, createAngleProperty(),
 				MAX_DEGREES);
-		angleAnimation.setInterpolator(new LinearInterpolator());
-		angleAnimation.setDuration(ANGLE_ANIMATION_DURATION);
-		angleAnimation.setRepeatMode(ValueAnimator.RESTART);
-		angleAnimation.setRepeatCount(ValueAnimator.INFINITE);
+		angleAnimator.setInterpolator(new LinearInterpolator());
+		angleAnimator.setDuration(ANGLE_ANIMATION_DURATION);
+		angleAnimator.setRepeatMode(ValueAnimator.RESTART);
+		angleAnimator.setRepeatCount(ValueAnimator.INFINITE);
 	}
 
 	/**
@@ -173,16 +173,16 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	}
 
 	/**
-	 * Initializes the sweep animation.
+	 * Initializes the sweep animator.
 	 */
-	private void initializeSweepAnimation() {
-		sweepAnimation = ObjectAnimator.ofFloat(this, createSweepProperty(),
+	private void initializeSweepAnimator() {
+		sweepAnimator = ObjectAnimator.ofFloat(this, createSweepProperty(),
 				MAX_DEGREES - MIN_SWEEP_ANGLE * 2);
-		sweepAnimation.setInterpolator(new DecelerateInterpolator());
-		sweepAnimation.setDuration(SWEEP_ANIMATION_DURATION);
-		sweepAnimation.setRepeatMode(ValueAnimator.RESTART);
-		sweepAnimation.setRepeatCount(ValueAnimator.INFINITE);
-		sweepAnimation.addListener(createSweepAnimationListener());
+		sweepAnimator.setInterpolator(new DecelerateInterpolator());
+		sweepAnimator.setDuration(SWEEP_ANIMATION_DURATION);
+		sweepAnimator.setRepeatMode(ValueAnimator.RESTART);
+		sweepAnimator.setRepeatCount(ValueAnimator.INFINITE);
+		sweepAnimator.addListener(createSweepAnimatorListener());
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	 * @return The listener, which has been created, as an instance of the type
 	 *         {@link AnimatorListener}
 	 */
-	private AnimatorListener createSweepAnimationListener() {
+	private AnimatorListener createSweepAnimatorListener() {
 		return new AnimatorListener() {
 
 			@Override
@@ -264,7 +264,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		this.thickness = thickness;
 		this.bounds = new RectF();
 		initializePaint();
-		initializeAnimations();
+		initializeAnimators();
 	}
 
 	/**
@@ -319,8 +319,8 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	@Override
 	public final void start() {
 		if (!isRunning()) {
-			angleAnimation.start();
-			sweepAnimation.start();
+			angleAnimator.start();
+			sweepAnimator.start();
 			invalidateSelf();
 		}
 	}
@@ -328,15 +328,15 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	@Override
 	public final void stop() {
 		if (isRunning()) {
-			angleAnimation.cancel();
-			sweepAnimation.cancel();
+			angleAnimator.cancel();
+			sweepAnimator.cancel();
 			invalidateSelf();
 		}
 	}
 
 	@Override
 	public final boolean isRunning() {
-		return angleAnimation.isRunning();
+		return angleAnimator.isRunning();
 	}
 
 	@Override
