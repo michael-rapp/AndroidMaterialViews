@@ -557,7 +557,7 @@ public class FloatingActionButton extends RelativeLayout {
 			@Override
 			public void onAnimationStart(final Animator animation) {
 				if (visibility == View.VISIBLE) {
-					setVisibility(visibility);
+					FloatingActionButton.super.setVisibility(visibility);
 				}
 			}
 
@@ -568,7 +568,7 @@ public class FloatingActionButton extends RelativeLayout {
 
 			@Override
 			public void onAnimationEnd(final Animator animation) {
-				setVisibility(visibility);
+				FloatingActionButton.super.setVisibility(visibility);
 				visibilityAnimator = null;
 			}
 
@@ -859,6 +859,14 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	@Override
+	public final void setVisibility(final int visibility) {
+		super.setVisibility(visibility);
+		float scale = visibility == View.VISIBLE ? 1 : 0;
+		setScaleX(scale);
+		setScaleY(scale);
+	}
+
+	@Override
 	public final void setOnClickListener(final OnClickListener listener) {
 		imageButton.setOnClickListener(listener);
 	}
@@ -878,17 +886,10 @@ public class FloatingActionButton extends RelativeLayout {
 	protected final void onMeasure(final int widthMeasureSpec,
 			final int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-		if (visibilityAnimator == null) {
-			if (getVisibility() == View.VISIBLE) {
-				int shadowSize = getResources().getDimensionPixelSize(
-						R.dimen.floating_action_button_shadow_size);
-				int pixelSize = getPixelSize() + shadowSize;
-				setMeasuredDimension(pixelSize, pixelSize);
-			} else {
-				setMeasuredDimension(0, 0);
-			}
-		}
+		int shadowSize = getResources().getDimensionPixelSize(
+				R.dimen.floating_action_button_shadow_size);
+		int pixelSize = getPixelSize() + shadowSize;
+		setMeasuredDimension(pixelSize, pixelSize);
 	}
 
 }
