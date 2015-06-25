@@ -39,7 +39,7 @@ import de.mrapp.android.view.drawable.CircularProgressDrawable;
  * 
  * @since 1.0.0
  */
-public class CircularProgressView extends View {
+public class CircularProgressBar extends View {
 
 	/**
 	 * The color of the circular progress bar.
@@ -147,7 +147,7 @@ public class CircularProgressView extends View {
 	 *            The context, the view should belong to, as an instance of the
 	 *            class {@link Context}
 	 */
-	public CircularProgressView(final Context context) {
+	public CircularProgressBar(final Context context) {
 		this(context, null);
 	}
 
@@ -161,7 +161,7 @@ public class CircularProgressView extends View {
 	 * @param attributeSet
 	 *            The attributes of the XML tag that is inflating the view
 	 */
-	public CircularProgressView(final Context context,
+	public CircularProgressBar(final Context context,
 			final AttributeSet attributeSet) {
 		super(context, attributeSet);
 		initialize(attributeSet);
@@ -182,7 +182,7 @@ public class CircularProgressView extends View {
 	 *            either be an attribute resource, whose value will be retrieved
 	 *            from the current theme, or an explicit style resource
 	 */
-	public CircularProgressView(final Context context,
+	public CircularProgressBar(final Context context,
 			final AttributeSet attributeSet, final int defaultStyle) {
 		super(context, attributeSet, defaultStyle);
 		initialize(attributeSet);
@@ -211,7 +211,7 @@ public class CircularProgressView extends View {
 	 *            look for defaults
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public CircularProgressView(final Context context,
+	public CircularProgressBar(final Context context,
 			final AttributeSet attributeSet, final int defaultStyle,
 			final int defaultStyleResource) {
 		super(context, attributeSet, defaultStyle, defaultStyleResource);

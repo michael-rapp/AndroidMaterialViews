@@ -36,7 +36,7 @@ import android.view.animation.LinearInterpolator;
 import static de.mrapp.android.view.util.Condition.ensureAtLeast;
 
 /**
- * An animated drawable, which is used by the view {@link CircularProgressView}.
+ * An animated drawable, which is used by the view {@link CircularProgressBar}.
  * 
  * @author Michael Rapp
  * 
@@ -250,7 +250,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 
 	/**
 	 * Creates a new animated drawable, which is used by the view
-	 * {@link CircularProgressView}.
+	 * {@link CircularProgressBar}.
 	 * 
 	 * @param color
 	 *            The color of the progress drawable as an {@link Integer} value
