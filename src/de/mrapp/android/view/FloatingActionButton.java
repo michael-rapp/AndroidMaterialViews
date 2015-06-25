@@ -522,12 +522,8 @@ public class FloatingActionButton extends RelativeLayout {
 	 * @param duration
 	 *            The duration of the animation in milliseconds as a
 	 *            {@link Long} value
-	 * @param rotateIcon
-	 *            True, if the floating action button's icon should be rotated
-	 *            during the animation, false otherwise
 	 */
-	private void animateVisibility(final int visibility, final long duration,
-			final boolean rotateIcon) {
+	private void animateVisibility(final int visibility, final long duration) {
 		if (visibilityAnimator != null) {
 			visibilityAnimator.cancel();
 		}
@@ -849,33 +845,13 @@ public class FloatingActionButton extends RelativeLayout {
 	 * @param animate
 	 *            True, if changing the visibility should be animated, false
 	 *            otherwise
-	 * @param rotateIcon
-	 *            True, if the floating action button's icon should be rotated
-	 *            during the animation, false otherwise
 	 */
-	public final void setVisibility(final int visibility,
-			final boolean animate, final boolean rotateIcon) {
+	public final void setVisibility(final int visibility, final boolean animate) {
 		if (animate) {
-			animateVisibility(visibility, getVisibilityAnimationDuration(),
-					rotateIcon);
+			animateVisibility(visibility, getVisibilityAnimationDuration());
 		} else {
 			setVisibility(visibility);
 		}
-	}
-
-	/**
-	 * Sets the visibility of the floating action button.
-	 * 
-	 * @param visibility
-	 *            The visibility, which should be set, as an {@link Integer}
-	 *            value. The visibility may be <code>View.VISIBLE</code>,
-	 *            <code>View.INVISIBLE</code> or <code>View.GONE</code>
-	 * @param animate
-	 *            True, if changing the visibility should be animated, false
-	 *            otherwise
-	 */
-	public final void setVisibility(final int visibility, final boolean animate) {
-		setVisibility(visibility, animate, true);
 	}
 
 	@Override
