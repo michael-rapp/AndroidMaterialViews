@@ -1,0 +1,15 @@
+AndroidMaterialViews - RELEASE NOTES
+====================================
+
+
+Version: 		1.0.0 
+Release date:	06.25.2015
+--------------------------
+
+The first stable release, which initially provides the following views:
+	
+    -   A CircularProgressBar, which visualizes an indeterminate progress bar as an animated 
+        circle. 
+        
+    -   A FloatingActionButton, which is a round, colored button with a shadow and an icon.
+        The button supports to become shown or hidden in an animated manner.
