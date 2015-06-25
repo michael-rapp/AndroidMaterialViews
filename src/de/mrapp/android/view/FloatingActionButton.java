@@ -17,8 +17,8 @@
  */
 package de.mrapp.android.view;
 
-import static de.mrapp.android.view.util.Condition.ensureNotNull;
 import static de.mrapp.android.view.util.Condition.ensureAtLeast;
+import static de.mrapp.android.view.util.Condition.ensureNotNull;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.annotation.SuppressLint;
@@ -120,7 +120,13 @@ public class FloatingActionButton extends RelativeLayout {
 			throw new IllegalArgumentException("Invalid enum value: " + value);
 		}
 
-	}
+	};
+
+	/**
+	 * The number of degrees, the floating action button's icon should be
+	 * rotated by, when changing the floating action button's visibility.
+	 */
+	private static final float ROTATE_ICON_ANIMATION_DEGREES = 90.0f;
 
 	/**
 	 * The image button, which is used to show the floating action button's
@@ -167,6 +173,12 @@ public class FloatingActionButton extends RelativeLayout {
 	 * action button.
 	 */
 	private ViewPropertyAnimator visibilityAnimator;
+
+	/**
+	 * The animator, which may be used to rotate the floating action button's
+	 * icon, when changing its visibility.
+	 */
+	private ViewPropertyAnimator rotateIconAnimator;
 
 	/**
 	 * Initializes the view.
@@ -522,19 +534,41 @@ public class FloatingActionButton extends RelativeLayout {
 	 * @param duration
 	 *            The duration of the animation in milliseconds as a
 	 *            {@link Long} value
-	 * @return The animator, which is used to change the visibility, as an
-	 *         instance of the class {@link ViewPropertyAnimator}
+	 * @param rotateIcon
+	 *            True, if the floating action button's icon should be rotated
+	 *            during the animation, false otherwise
 	 */
-	private ViewPropertyAnimator animateVisibility(final int visibility,
-			final long duration) {
+	private void animateVisibility(final int visibility, final long duration,
+			final boolean rotateIcon) {
+		cancelAnimators();
 		AnimatorListener listener = createVisibilityAnimatorListener(visibility);
-		int targetScale = visibility == View.VISIBLE ? 1 : 0;
+		float targetScale = visibility == View.VISIBLE ? 1 : 0;
 		long animationDuration = Math.round(Math.abs(getScaleX() - targetScale)
 				* duration);
 		Interpolator interpolator = new AccelerateDecelerateInterpolator();
-		return animate().setInterpolator(interpolator).scaleX(targetScale)
-				.scaleY(targetScale).setDuration(animationDuration)
-				.setListener(listener);
+		visibilityAnimator = animate().setInterpolator(interpolator)
+				.scaleX(targetScale).scaleY(targetScale)
+				.setDuration(animationDuration).setListener(listener);
+
+		if (rotateIcon && visibility == View.VISIBLE) {
+			rotateIconAnimator = imageButton.animate()
+					.setInterpolator(interpolator).rotation(0)
+					.setDuration(animationDuration);
+		}
+	}
+
+	/**
+	 * Cancels the animators, which may be used to change the visibility of the
+	 * floating action button, if they are currently running.
+	 */
+	private void cancelAnimators() {
+		if (visibilityAnimator != null) {
+			visibilityAnimator.cancel();
+		}
+
+		if (rotateIconAnimator != null) {
+			rotateIconAnimator.cancel();
+		}
 	}
 
 	/**
@@ -569,12 +603,16 @@ public class FloatingActionButton extends RelativeLayout {
 			@Override
 			public void onAnimationEnd(final Animator animation) {
 				FloatingActionButton.super.setVisibility(visibility);
+				imageButton.setRotation(visibility == View.VISIBLE ? 0
+						: -ROTATE_ICON_ANIMATION_DEGREES);
 				visibilityAnimator = null;
+				rotateIconAnimator = null;
 			}
 
 			@Override
 			public void onAnimationCancel(final Animator animation) {
 				visibilityAnimator = null;
+				rotateIconAnimator = null;
 			}
 
 		};
@@ -844,24 +882,42 @@ public class FloatingActionButton extends RelativeLayout {
 	 * @param animate
 	 *            True, if changing the visibility should be animated, false
 	 *            otherwise
+	 * @param rotateIcon
+	 *            True, if the floating action button's icon should be rotated
+	 *            during the animation, false otherwise
 	 */
-	public final void setVisibility(final int visibility, final boolean animate) {
+	public final void setVisibility(final int visibility,
+			final boolean animate, final boolean rotateIcon) {
 		if (animate) {
-			if (visibilityAnimator != null) {
-				visibilityAnimator.cancel();
-			}
-
-			visibilityAnimator = animateVisibility(visibility,
-					getVisibilityAnimationDuration());
+			animateVisibility(visibility, getVisibilityAnimationDuration(),
+					rotateIcon);
 		} else {
 			setVisibility(visibility);
 		}
 	}
 
+	/**
+	 * Sets the visibility of the floating action button.
+	 * 
+	 * @param visibility
+	 *            The visibility, which should be set, as an {@link Integer}
+	 *            value. The visibility may be <code>View.VISIBLE</code>,
+	 *            <code>View.INVISIBLE</code> or <code>View.GONE</code>
+	 * @param animate
+	 *            True, if changing the visibility should be animated, false
+	 *            otherwise
+	 */
+	public final void setVisibility(final int visibility, final boolean animate) {
+		setVisibility(visibility, animate, true);
+	}
+
 	@Override
 	public final void setVisibility(final int visibility) {
 		super.setVisibility(visibility);
+		float iconRotation = visibility == View.VISIBLE ? 0
+				: -ROTATE_ICON_ANIMATION_DEGREES;
 		float scale = visibility == View.VISIBLE ? 1 : 0;
+		imageButton.setRotation(iconRotation);
 		setScaleX(scale);
 		setScaleY(scale);
 	}
