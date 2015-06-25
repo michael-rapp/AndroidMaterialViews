@@ -123,12 +123,6 @@ public class FloatingActionButton extends RelativeLayout {
 	};
 
 	/**
-	 * The number of degrees, the floating action button's icon should be
-	 * rotated by, when changing the floating action button's visibility.
-	 */
-	private static final float ROTATE_ICON_ANIMATION_DEGREES = 90.0f;
-
-	/**
 	 * The image button, which is used to show the floating action button's
 	 * background and icon.
 	 */
@@ -173,12 +167,6 @@ public class FloatingActionButton extends RelativeLayout {
 	 * action button.
 	 */
 	private ViewPropertyAnimator visibilityAnimator;
-
-	/**
-	 * The animator, which may be used to rotate the floating action button's
-	 * icon, when changing its visibility.
-	 */
-	private ViewPropertyAnimator rotateIconAnimator;
 
 	/**
 	 * Initializes the view.
@@ -540,7 +528,10 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void animateVisibility(final int visibility, final long duration,
 			final boolean rotateIcon) {
-		cancelAnimators();
+		if (visibilityAnimator != null) {
+			visibilityAnimator.cancel();
+		}
+
 		AnimatorListener listener = createVisibilityAnimatorListener(visibility);
 		float targetScale = visibility == View.VISIBLE ? 1 : 0;
 		long animationDuration = Math.round(Math.abs(getScaleX() - targetScale)
@@ -549,26 +540,6 @@ public class FloatingActionButton extends RelativeLayout {
 		visibilityAnimator = animate().setInterpolator(interpolator)
 				.scaleX(targetScale).scaleY(targetScale)
 				.setDuration(animationDuration).setListener(listener);
-
-		if (rotateIcon && visibility == View.VISIBLE) {
-			rotateIconAnimator = imageButton.animate()
-					.setInterpolator(interpolator).rotation(0)
-					.setDuration(animationDuration);
-		}
-	}
-
-	/**
-	 * Cancels the animators, which may be used to change the visibility of the
-	 * floating action button, if they are currently running.
-	 */
-	private void cancelAnimators() {
-		if (visibilityAnimator != null) {
-			visibilityAnimator.cancel();
-		}
-
-		if (rotateIconAnimator != null) {
-			rotateIconAnimator.cancel();
-		}
 	}
 
 	/**
@@ -603,16 +574,12 @@ public class FloatingActionButton extends RelativeLayout {
 			@Override
 			public void onAnimationEnd(final Animator animation) {
 				FloatingActionButton.super.setVisibility(visibility);
-				imageButton.setRotation(visibility == View.VISIBLE ? 0
-						: -ROTATE_ICON_ANIMATION_DEGREES);
 				visibilityAnimator = null;
-				rotateIconAnimator = null;
 			}
 
 			@Override
 			public void onAnimationCancel(final Animator animation) {
 				visibilityAnimator = null;
-				rotateIconAnimator = null;
 			}
 
 		};
@@ -914,10 +881,7 @@ public class FloatingActionButton extends RelativeLayout {
 	@Override
 	public final void setVisibility(final int visibility) {
 		super.setVisibility(visibility);
-		float iconRotation = visibility == View.VISIBLE ? 0
-				: -ROTATE_ICON_ANIMATION_DEGREES;
 		float scale = visibility == View.VISIBLE ? 1 : 0;
-		imageButton.setRotation(iconRotation);
 		setScaleX(scale);
 		setScaleY(scale);
 	}
