@@ -2,6 +2,15 @@ AndroidMaterialViews - RELEASE NOTES
 ====================================
 
 
+Version:        1.0.2
+Release date:   10.03.2015
+--------------------------
+
+A bugfix release, which fixes the following issues:
+
+    -   https://sourceforge.net/p/androidmaterialviews/tickets/1/
+
+
 Version:        1.0.1
 Release date:   06.26.2015
 --------------------------
