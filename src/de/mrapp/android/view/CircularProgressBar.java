@@ -76,16 +76,13 @@ public class CircularProgressBar extends View {
 	 *            from, as an instance of the type {@link AttributeSet}
 	 */
 	private void obtainStyledAttributes(final AttributeSet attributeSet) {
-		if (attributeSet != null) {
-			TypedArray typedArray = getContext().obtainStyledAttributes(
-					attributeSet, R.styleable.CircularProgressBar);
+		TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.CircularProgressBar);
 
-			try {
-				obtainColor(typedArray);
-				obtainThickness(typedArray);
-			} finally {
-				typedArray.recycle();
-			}
+		try {
+			obtainColor(typedArray);
+			obtainThickness(typedArray);
+		} finally {
+			typedArray.recycle();
 		}
 	}
 
@@ -98,8 +95,7 @@ public class CircularProgressBar extends View {
 	 */
 	private void obtainColor(final TypedArray typedArray) {
 		int defaultColor = getAccentColor();
-		color = typedArray.getColor(
-				R.styleable.CircularProgressBar_android_color, defaultColor);
+		color = typedArray.getColor(R.styleable.CircularProgressBar_android_color, defaultColor);
 	}
 
 	/**
@@ -111,10 +107,8 @@ public class CircularProgressBar extends View {
 	 */
 	private void obtainThickness(final TypedArray typedArray) {
 		int defaultThickness = getContext().getResources()
-				.getDimensionPixelSize(
-						R.dimen.circular_progress_bar_thickness_normal);
-		thickness = typedArray.getDimensionPixelSize(
-				R.styleable.CircularProgressBar_android_thickness,
+				.getDimensionPixelSize(R.dimen.circular_progress_bar_thickness_normal);
+		thickness = typedArray.getDimensionPixelSize(R.styleable.CircularProgressBar_android_thickness,
 				defaultThickness);
 	}
 
@@ -122,8 +116,7 @@ public class CircularProgressBar extends View {
 	 * Initializes the drawable, which is shown by the view.
 	 */
 	private void initializeDrawable() {
-		circularProgressDrawable = new CircularProgressDrawable(getColor(),
-				getThickness());
+		circularProgressDrawable = new CircularProgressDrawable(getColor(), getThickness());
 		circularProgressDrawable.setCallback(this);
 	}
 
@@ -134,8 +127,7 @@ public class CircularProgressBar extends View {
 	 *         as an {@link Integer} value
 	 */
 	private int getAccentColor() {
-		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
-				new int[] { R.attr.colorAccent });
+		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(new int[] { R.attr.colorAccent });
 		return typedArray.getColor(0, 0);
 	}
 
@@ -161,8 +153,7 @@ public class CircularProgressBar extends View {
 	 * @param attributeSet
 	 *            The attributes of the XML tag that is inflating the view
 	 */
-	public CircularProgressBar(final Context context,
-			final AttributeSet attributeSet) {
+	public CircularProgressBar(final Context context, final AttributeSet attributeSet) {
 		super(context, attributeSet);
 		initialize(attributeSet);
 	}
@@ -182,8 +173,7 @@ public class CircularProgressBar extends View {
 	 *            either be an attribute resource, whose value will be retrieved
 	 *            from the current theme, or an explicit style resource
 	 */
-	public CircularProgressBar(final Context context,
-			final AttributeSet attributeSet, final int defaultStyle) {
+	public CircularProgressBar(final Context context, final AttributeSet attributeSet, final int defaultStyle) {
 		super(context, attributeSet, defaultStyle);
 		initialize(attributeSet);
 	}
@@ -211,8 +201,7 @@ public class CircularProgressBar extends View {
 	 *            look for defaults
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public CircularProgressBar(final Context context,
-			final AttributeSet attributeSet, final int defaultStyle,
+	public CircularProgressBar(final Context context, final AttributeSet attributeSet, final int defaultStyle,
 			final int defaultStyleResource) {
 		super(context, attributeSet, defaultStyle, defaultStyleResource);
 		initialize(attributeSet);
@@ -279,8 +268,7 @@ public class CircularProgressBar extends View {
 	}
 
 	@Override
-	protected final void onVisibilityChanged(final View changedView,
-			final int visibility) {
+	protected final void onVisibilityChanged(final View changedView, final int visibility) {
 		super.onVisibilityChanged(changedView, visibility);
 
 		if (circularProgressDrawable != null) {
@@ -293,8 +281,7 @@ public class CircularProgressBar extends View {
 	}
 
 	@Override
-	protected final void onSizeChanged(final int w, final int h,
-			final int oldw, final int oldh) {
+	protected final void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		circularProgressDrawable.setBounds(0, 0, w, h);
 	}

@@ -189,8 +189,7 @@ public class FloatingActionButton extends RelativeLayout {
 	private void inflateLayout() {
 		imageButton = new ImageButton(getContext());
 		LayoutParams layoutParams = new LayoutParams(0, 0);
-		layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,
-				RelativeLayout.TRUE);
+		layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 		addView(imageButton, layoutParams);
 	}
 
@@ -202,21 +201,18 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            from, as an instance of the type {@link AttributeSet}
 	 */
 	private void obtainStyledAttributes(final AttributeSet attributeSet) {
-		if (attributeSet != null) {
-			TypedArray typedArray = getContext().obtainStyledAttributes(
-					attributeSet, R.styleable.FloatingActionButton);
+		TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.FloatingActionButton);
 
-			try {
-				obtainSize(typedArray);
-				obtainColor(typedArray);
-				obtainActivatedColor(typedArray);
-				obtainPressedColor(typedArray);
-				obtainDisabledColor(typedArray);
-				obtainIcon(typedArray);
-				obtainVisibilityAnimationDuration(typedArray);
-			} finally {
-				typedArray.recycle();
-			}
+		try {
+			obtainSize(typedArray);
+			obtainColor(typedArray);
+			obtainActivatedColor(typedArray);
+			obtainPressedColor(typedArray);
+			obtainDisabledColor(typedArray);
+			obtainIcon(typedArray);
+			obtainVisibilityAnimationDuration(typedArray);
+		} finally {
+			typedArray.recycle();
 		}
 	}
 
@@ -229,8 +225,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainSize(final TypedArray typedArray) {
 		Size defaultSize = Size.NORMAL;
-		size = Size.fromValue(typedArray.getInt(
-				R.styleable.FloatingActionButton_size, defaultSize.getValue()));
+		size = Size.fromValue(typedArray.getInt(R.styleable.FloatingActionButton_size, defaultSize.getValue()));
 	}
 
 	/**
@@ -242,8 +237,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainColor(final TypedArray typedArray) {
 		int defaultColor = getAccentColor();
-		color = typedArray.getColor(
-				R.styleable.FloatingActionButton_android_color, defaultColor);
+		color = typedArray.getColor(R.styleable.FloatingActionButton_android_color, defaultColor);
 	}
 
 	/**
@@ -256,9 +250,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainActivatedColor(final TypedArray typedArray) {
 		int defaultActivatedColor = getControlActivatedColor();
-		activatedColor = typedArray.getColor(
-				R.styleable.FloatingActionButton_activatedColor,
-				defaultActivatedColor);
+		activatedColor = typedArray.getColor(R.styleable.FloatingActionButton_activatedColor, defaultActivatedColor);
 	}
 
 	/**
@@ -271,9 +263,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void obtainPressedColor(final TypedArray typedArray) {
 		int defaultPressedColor = getControlHighlightColor();
-		pressedColor = typedArray.getColor(
-				R.styleable.FloatingActionButton_pressedColor,
-				defaultPressedColor);
+		pressedColor = typedArray.getColor(R.styleable.FloatingActionButton_pressedColor, defaultPressedColor);
 	}
 
 	/**
@@ -285,11 +275,8 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            as an instance of the class {@link TypedArray}
 	 */
 	private void obtainDisabledColor(final TypedArray typedArray) {
-		int defaultDisabledColor = getResources().getColor(
-				R.color.floating_action_button_disabled_color);
-		disabledColor = typedArray.getColor(
-				R.styleable.FloatingActionButton_disabledColor,
-				defaultDisabledColor);
+		int defaultDisabledColor = getResources().getColor(R.color.floating_action_button_disabled_color);
+		disabledColor = typedArray.getColor(R.styleable.FloatingActionButton_disabledColor, defaultDisabledColor);
 	}
 
 	/**
@@ -300,8 +287,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            an instance of the class {@link TypedArray}
 	 */
 	private void obtainIcon(final TypedArray typedArray) {
-		Drawable icon = typedArray
-				.getDrawable(R.styleable.FloatingActionButton_android_icon);
+		Drawable icon = typedArray.getDrawable(R.styleable.FloatingActionButton_android_icon);
 		setIcon(icon);
 	}
 
@@ -314,10 +300,9 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            from, as an instance of the class {@link TypedArray}
 	 */
 	private void obtainVisibilityAnimationDuration(final TypedArray typedArray) {
-		int defaultAnimationDuration = getResources().getInteger(
-				R.integer.floating_action_button_visibility_animation_duration);
-		int duration = typedArray.getInteger(
-				R.styleable.FloatingActionButton_visibilityAnimationDuration,
+		int defaultAnimationDuration = getResources()
+				.getInteger(R.integer.floating_action_button_visibility_animation_duration);
+		int duration = typedArray.getInteger(R.styleable.FloatingActionButton_visibilityAnimationDuration,
 				defaultAnimationDuration);
 		setVisibilityAnimationDuration(duration);
 	}
@@ -342,8 +327,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private void adaptImageButtonSize() {
 		int pixelSize = getPixelSize();
-		LayoutParams layoutParams = (LayoutParams) imageButton
-				.getLayoutParams();
+		LayoutParams layoutParams = (LayoutParams) imageButton.getLayoutParams();
 		layoutParams.width = pixelSize;
 		layoutParams.height = pixelSize;
 		imageButton.setLayoutParams(layoutParams);
@@ -362,9 +346,7 @@ public class FloatingActionButton extends RelativeLayout {
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			RippleDrawable rippleDrawable = new RippleDrawable(
-					new ColorStateList(new int[][] { {} },
-							new int[] { getPressedColor() }),
-					stateListDrawable, null);
+					new ColorStateList(new int[][] { {} }, new int[] { getPressedColor() }), stateListDrawable, null);
 			imageButton.setBackground(rippleDrawable);
 		} else {
 			imageButton.setBackgroundDrawable(stateListDrawable);
@@ -383,16 +365,13 @@ public class FloatingActionButton extends RelativeLayout {
 		StateListDrawable drawable = new StateListDrawable();
 
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-			drawable.addState(new int[] { android.R.attr.state_enabled,
-					android.R.attr.state_pressed },
+			drawable.addState(new int[] { android.R.attr.state_enabled, android.R.attr.state_pressed },
 					createPressedBackgroundDrawable());
 		}
 
-		drawable.addState(new int[] { android.R.attr.state_enabled,
-				android.R.attr.state_activated },
+		drawable.addState(new int[] { android.R.attr.state_enabled, android.R.attr.state_activated },
 				createActivatedBackgroundDrawable());
-		drawable.addState(new int[] { android.R.attr.state_enabled },
-				createBackgroundDrawable(getColor()));
+		drawable.addState(new int[] { android.R.attr.state_enabled }, createBackgroundDrawable(getColor()));
 		drawable.addState(new int[] {}, createDisabledBackgroundDrawable());
 		return drawable;
 	}
@@ -461,14 +440,11 @@ public class FloatingActionButton extends RelativeLayout {
 	 */
 	private int getPixelSize() {
 		if (getSize() == Size.NORMAL) {
-			return getResources().getDimensionPixelSize(
-					R.dimen.floating_action_button_size_normal);
+			return getResources().getDimensionPixelSize(R.dimen.floating_action_button_size_normal);
 		} else if (getSize() == Size.SMALL) {
-			return getResources().getDimensionPixelSize(
-					R.dimen.floating_action_button_size_small);
+			return getResources().getDimensionPixelSize(R.dimen.floating_action_button_size_small);
 		} else {
-			return getResources().getDimensionPixelSize(
-					R.dimen.floating_action_button_size_large);
+			return getResources().getDimensionPixelSize(R.dimen.floating_action_button_size_large);
 		}
 	}
 
@@ -479,8 +455,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 *         as an {@link Integer} value
 	 */
 	private int getAccentColor() {
-		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
-				new int[] { R.attr.colorAccent });
+		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(new int[] { R.attr.colorAccent });
 		return typedArray.getColor(0, 0);
 	}
 
@@ -493,8 +468,8 @@ public class FloatingActionButton extends RelativeLayout {
 	 *         value
 	 */
 	private int getControlHighlightColor() {
-		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
-				new int[] { R.attr.colorControlHighlight });
+		TypedArray typedArray = getContext().getTheme()
+				.obtainStyledAttributes(new int[] { R.attr.colorControlHighlight });
 		return typedArray.getColor(0, 0);
 	}
 
@@ -507,8 +482,8 @@ public class FloatingActionButton extends RelativeLayout {
 	 *         value
 	 */
 	private int getControlActivatedColor() {
-		TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(
-				new int[] { R.attr.colorControlActivated });
+		TypedArray typedArray = getContext().getTheme()
+				.obtainStyledAttributes(new int[] { R.attr.colorControlActivated });
 		return typedArray.getColor(0, 0);
 	}
 
@@ -530,11 +505,9 @@ public class FloatingActionButton extends RelativeLayout {
 
 		AnimatorListener listener = createVisibilityAnimatorListener(visibility);
 		float targetScale = visibility == View.VISIBLE ? 1 : 0;
-		long animationDuration = Math.round(Math.abs(getScaleX() - targetScale)
-				* duration);
+		long animationDuration = Math.round(Math.abs(getScaleX() - targetScale) * duration);
 		Interpolator interpolator = new AccelerateDecelerateInterpolator();
-		visibilityAnimator = animate().setInterpolator(interpolator)
-				.scaleX(targetScale).scaleY(targetScale)
+		visibilityAnimator = animate().setInterpolator(interpolator).scaleX(targetScale).scaleY(targetScale)
 				.setDuration(animationDuration).setListener(listener);
 	}
 
@@ -551,8 +524,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 * @return The listener, which has been created, as an instance of the type
 	 *         {@link AnimatorListener}
 	 */
-	private AnimatorListener createVisibilityAnimatorListener(
-			final int visibility) {
+	private AnimatorListener createVisibilityAnimatorListener(final int visibility) {
 		return new AnimatorListener() {
 
 			@Override
@@ -604,8 +576,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            The attribute set, the view's attributes should be obtained
 	 *            from, as an instance of the type {@link AttributeSet}
 	 */
-	public FloatingActionButton(final Context context,
-			final AttributeSet attributeSet) {
+	public FloatingActionButton(final Context context, final AttributeSet attributeSet) {
 		super(context, attributeSet);
 		initialize(attributeSet);
 	}
@@ -626,8 +597,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            either be an attribute resource, whose value will be retrieved
 	 *            from the current theme, or an explicit style resource
 	 */
-	public FloatingActionButton(final Context context,
-			final AttributeSet attributeSet, final int defaultStyle) {
+	public FloatingActionButton(final Context context, final AttributeSet attributeSet, final int defaultStyle) {
 		super(context, attributeSet, defaultStyle);
 		initialize(attributeSet);
 	}
@@ -655,8 +625,7 @@ public class FloatingActionButton extends RelativeLayout {
 	 *            look for defaults
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public FloatingActionButton(final Context context,
-			final AttributeSet attributeSet, final int defaultStyle,
+	public FloatingActionButton(final Context context, final AttributeSet attributeSet, final int defaultStyle,
 			final int defaultStyleResource) {
 		super(context, attributeSet, defaultStyle, defaultStyleResource);
 		initialize(attributeSet);
@@ -879,11 +848,9 @@ public class FloatingActionButton extends RelativeLayout {
 	}
 
 	@Override
-	protected final void onMeasure(final int widthMeasureSpec,
-			final int heightMeasureSpec) {
+	protected final void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		int shadowSize = getResources().getDimensionPixelSize(
-				R.dimen.floating_action_button_shadow_size);
+		int shadowSize = getResources().getDimensionPixelSize(R.dimen.floating_action_button_shadow_size);
 		int pixelSize = getPixelSize() + shadowSize;
 		setMeasuredDimension(pixelSize, pixelSize);
 	}
