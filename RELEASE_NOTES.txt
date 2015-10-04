@@ -2,6 +2,16 @@ AndroidMaterialViews - RELEASE NOTES
 ====================================
 
 
+Version:		1.0.3
+Release data:	10.04.2015
+--------------------------
+
+A minor release, which introduces the following changes:
+
+	-	CircularProgressDrawables are now always resized to be square by shortening the 
+		longer edge to match the length of the shorter edge.
+
+
 Version:        1.0.2
 Release date:   10.03.2015
 --------------------------
