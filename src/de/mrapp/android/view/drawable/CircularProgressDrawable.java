@@ -138,8 +138,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	 * Initializes the angle animator.
 	 */
 	private void initializeAngleAnimator() {
-		angleAnimator = ObjectAnimator.ofFloat(this, createAngleProperty(),
-				MAX_DEGREES);
+		angleAnimator = ObjectAnimator.ofFloat(this, createAngleProperty(), MAX_DEGREES);
 		angleAnimator.setInterpolator(new LinearInterpolator());
 		angleAnimator.setDuration(ANGLE_ANIMATION_DURATION);
 		angleAnimator.setRepeatMode(ValueAnimator.RESTART);
@@ -154,8 +153,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	 *         {@link Property}
 	 */
 	private Property<CircularProgressDrawable, Float> createAngleProperty() {
-		return new Property<CircularProgressDrawable, Float>(Float.class,
-				"angle") {
+		return new Property<CircularProgressDrawable, Float>(Float.class, "angle") {
 
 			@Override
 			public Float get(final CircularProgressDrawable object) {
@@ -163,8 +161,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			}
 
 			@Override
-			public void set(final CircularProgressDrawable object,
-					final Float value) {
+			public void set(final CircularProgressDrawable object, final Float value) {
 				currentGlobalAngle = value;
 				invalidateSelf();
 			}
@@ -176,8 +173,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	 * Initializes the sweep animator.
 	 */
 	private void initializeSweepAnimator() {
-		sweepAnimator = ObjectAnimator.ofFloat(this, createSweepProperty(),
-				MAX_DEGREES - MIN_SWEEP_ANGLE * 2);
+		sweepAnimator = ObjectAnimator.ofFloat(this, createSweepProperty(), MAX_DEGREES - MIN_SWEEP_ANGLE * 2);
 		sweepAnimator.setInterpolator(new DecelerateInterpolator());
 		sweepAnimator.setDuration(SWEEP_ANIMATION_DURATION);
 		sweepAnimator.setRepeatMode(ValueAnimator.RESTART);
@@ -201,8 +197,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			}
 
 			@Override
-			public void set(final CircularProgressDrawable object,
-					final Float value) {
+			public void set(final CircularProgressDrawable object, final Float value) {
 				currentSweepAngle = value;
 				invalidateSelf();
 			}
@@ -240,8 +235,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				appearing = !appearing;
 
 				if (appearing) {
-					currentGlobalAngleOffset = (currentGlobalAngleOffset + MIN_SWEEP_ANGLE * 2)
-							% MAX_DEGREES;
+					currentGlobalAngleOffset = (currentGlobalAngleOffset + MIN_SWEEP_ANGLE * 2) % MAX_DEGREES;
 				}
 			}
 
@@ -342,10 +336,22 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	@Override
 	protected final void onBoundsChange(final Rect bounds) {
 		super.onBoundsChange(bounds);
-		this.bounds.left = bounds.left + thickness / 2.0f + 0.5f;
-		this.bounds.right = bounds.right - thickness / 2.0f - 0.5f;
-		this.bounds.top = bounds.top + thickness / 2.0f + 0.5f;
-		this.bounds.bottom = bounds.bottom - thickness / 2.0f - 0.5f;
+		int width = bounds.right - bounds.left;
+		int height = bounds.bottom - bounds.top;
+
+		if (width < height) {
+			int diff = height - width;
+			this.bounds.left = bounds.left + thickness / 2.0f + 0.5f;
+			this.bounds.right = bounds.right - thickness / 2.0f - 0.5f;
+			this.bounds.top = bounds.top + diff / 2.0f + thickness / 2.0f + 0.5f;
+			this.bounds.bottom = bounds.bottom - diff / 2.0f - thickness / 2.0f - 0.5f;
+		} else {
+			int diff = width - height;
+			this.bounds.left = bounds.left + diff / 2.0f + thickness / 2.0f + 0.5f;
+			this.bounds.right = bounds.right - diff / 2.0f - thickness / 2.0f - 0.5f;
+			this.bounds.top = bounds.top + thickness / 2.0f + 0.5f;
+			this.bounds.bottom = bounds.bottom - thickness / 2.0f - 0.5f;
+		}
 	}
 
 }
