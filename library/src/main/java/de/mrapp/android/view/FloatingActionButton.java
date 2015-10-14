@@ -36,8 +36,8 @@ import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import static de.mrapp.android.view.util.Condition.ensureAtLeast;
-import static de.mrapp.android.view.util.Condition.ensureNotNull;
+import static de.mrapp.android.util.Condition.ensureAtLeast;
+import static de.mrapp.android.util.Condition.ensureNotNull;
 
 /**
  * A floating action button, which has been designed according to the Material design guidelines.
