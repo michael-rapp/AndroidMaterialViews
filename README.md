@@ -15,7 +15,7 @@ This project is distributed under the GNU Lesser Public License version 3.0 (GLP
 
 The latest release of this library can be downloaded as a zip archive from the download section of the project's Github page, which is available [here](https://github.com/michael-rapp/AndroidMaterialViews/releases). Furthermore, the library's source code is available as a Git repository, which can be cloned using the URL https://github.com/michael-rapp/AndroidMaterialViews.git.
 
-Alternatively, the library can be added to your Android app as a Gradle dependency by adding the following to the module's `build.gradle` file:
+Alternatively, the library can be added to your Android app as a Gradle dependency by adding the following to the respective module's `build.gradle` file:
 
 ```
 dependencies {
