@@ -3,37 +3,34 @@
 <!--
 AndroidMaterialViews Copyright 2015 Michael Rapp
 
-This program is free software: you can redistribute it and/or modify 
-it under the terms of the GNU Lesser General Public License as published 
-by the Free Software Foundation, either version 3 of the License, or 
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+Lesser General Public License as published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but 
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 General Public License for more details.
 
-You should have received a copy of the GNU Lesser General Public 
-License along with this program. If not, see
-<http://www.gnu.org/licenses/>. 
+You should have received a copy of the GNU Lesser General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
 
     <declare-styleable name="CircularProgressBar">
-        <attr name="android:thickness" />
-        <attr name="android:color" />
+        <attr name="android:thickness"/>
+        <attr name="android:color"/>
     </declare-styleable>
     <declare-styleable name="FloatingActionButton">
-        <attr name="android:icon" />
-        <attr name="android:color" />
-        <attr name="activatedColor" format="color" />
-        <attr name="pressedColor" format="color" />
-        <attr name="disabledColor" format="color" />
-        <attr name="visibilityAnimationDuration" format="integer" />
+        <attr name="android:icon"/>
+        <attr name="android:color"/>
+        <attr name="activatedColor" format="color"/>
+        <attr name="pressedColor" format="color"/>
+        <attr name="disabledColor" format="color"/>
+        <attr name="visibilityAnimationDuration" format="integer"/>
         <attr name="size" format="enum">
-            <enum name="normal" value="0" />
-            <enum name="small" value="1" />
-            <enum name="large" value="2" />
+            <enum name="normal" value="0"/>
+            <enum name="small" value="1"/>
+            <enum name="large" value="2"/>
         </attr>
     </declare-styleable>
 
