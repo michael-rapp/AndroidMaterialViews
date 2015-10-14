@@ -25,6 +25,56 @@ dependencies {
 
 Before version 2.0.0 this project was hosted on [Sourceforge](https://sourceforge.net/projects/androidmaterialviews). These older versions used the legacy Eclipse ADT folder structure and are not available as Gradle artifacts.
 
+## Examples
+
+The following examples provide a quick overview on how to use the views, which are provided by this library, in your own Android app.
+
+### CircularProgressBar
+
+The XML code below shows how the view `CircularProgressBar` can be added to a XML layout resource. This example contains all of the view's custom attributes.
+
+```
+<?xml version="1.0" encoding="utf-8"?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent" >
+
+    <de.mrapp.android.view.CircularProgressBar 
+        android:id="@+id/circular_progress_bar" 
+        android:layout_width="@dimen/circular_progress_bar_size_normal" 
+        android:layout_height="@dimen/circular_progress_bar_size_normal" 
+        android:color="@color/circular_progress_bar_color" 
+        android:thickness="@dimen/circular_progress_bar_thickness_normal" /> 
+
+</RelativeLayout>
+```
+
+### FloatingActionButton
+
+The following example demonstrates how a `FloatingActionButton` can be declared within a XML layout resource. The example contains all of the view's custom attributes.
+
+```
+<?xml version="1.0" encoding="utf-8"?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:custom="http://schemas.android.com/apk/res-auto" 
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent" >
+
+    <de.mrapp.android.view.FloatingActionButton 
+        android:id="@+id/floating_action_button" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:color="@color/floating_action_button_color" 
+        android:icon="@drawable/floating_action_button_icon" 
+        custom:size="normal" 
+        custom:activatedColor="@color/floating_action_button_activated_color" 
+        custom:pressedColor="@color/floating_action_button_pressed_color" 
+        custom:disabledColor="@color/floating_action_button_disabled_color" 
+        custom:visibilityAnimationDuration="500" /> 
+
+</RelativeLayout>
+```
+
 ## Contact information
 
 For personal feedback or questions feel free to contact me via the mail address, which is mentioned on my [Github profile](https://github.com/michael-rapp). If you have found any bugs or want to post a feature request please use the [bugtracker](https://github.com/michael-rapp/AndroidMaterialViews/issues) to report them.
