@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AndroidMaterialViews.iml" filepath="$PROJECT_DIR$/.idea/AndroidMaterialViews.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidMaterialViews.iml" filepath="$PROJECT_DIR$/AndroidMaterialViews.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>
