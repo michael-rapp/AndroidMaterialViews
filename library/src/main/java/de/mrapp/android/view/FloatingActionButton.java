@@ -28,6 +28,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -160,9 +162,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param attributeSet
      *         The attribute set, the view's attributes should be obtained from, as an instance of
-     *         the type {@link AttributeSet}
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    private void initialize(final AttributeSet attributeSet) {
+    private void initialize(@Nullable final AttributeSet attributeSet) {
         inflateLayout();
         obtainStyledAttributes(attributeSet);
         adaptShadow();
@@ -185,9 +187,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param attributeSet
      *         The attribute set, the view's attributes should be obtained from, as an instance of
-     *         the type {@link AttributeSet}
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    private void obtainStyledAttributes(final AttributeSet attributeSet) {
+    private void obtainStyledAttributes(@Nullable final AttributeSet attributeSet) {
         TypedArray typedArray =
                 getContext().obtainStyledAttributes(attributeSet, R.styleable.FloatingActionButton);
 
@@ -209,9 +211,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the color should be obtained from, as an instance of the class
-     *         {@link TypedArray}
+     *         {@link TypedArray}. The typed array may not be null
      */
-    private void obtainSize(final TypedArray typedArray) {
+    private void obtainSize(@NonNull final TypedArray typedArray) {
         Size defaultSize = Size.NORMAL;
         size = Size.fromValue(
                 typedArray.getInt(R.styleable.FloatingActionButton_size, defaultSize.getValue()));
@@ -222,9 +224,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the color should be obtained from, as an instance of the class
-     *         {@link TypedArray}
+     *         {@link TypedArray}. The typed array may not be null
      */
-    private void obtainColor(final TypedArray typedArray) {
+    private void obtainColor(@NonNull final TypedArray typedArray) {
         int defaultColor = getAccentColor();
         color = typedArray.getColor(R.styleable.FloatingActionButton_android_color, defaultColor);
     }
@@ -234,9 +236,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the activated color should be obtained from, as an instance of the
-     *         class {@link TypedArray}
+     *         class {@link TypedArray}. The typed array may not be null
      */
-    private void obtainActivatedColor(final TypedArray typedArray) {
+    private void obtainActivatedColor(@NonNull final TypedArray typedArray) {
         int defaultActivatedColor = getControlActivatedColor();
         activatedColor = typedArray
                 .getColor(R.styleable.FloatingActionButton_activatedColor, defaultActivatedColor);
@@ -247,9 +249,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the pressed color should be obtained from, as an instance of the
-     *         class {@link TypedArray}
+     *         class {@link TypedArray}. The typed array may not be null
      */
-    private void obtainPressedColor(final TypedArray typedArray) {
+    private void obtainPressedColor(@NonNull final TypedArray typedArray) {
         int defaultPressedColor = getControlHighlightColor();
         pressedColor = typedArray
                 .getColor(R.styleable.FloatingActionButton_pressedColor, defaultPressedColor);
@@ -260,10 +262,10 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the disabled color should be obtained from, as an instance of the
-     *         class {@link TypedArray}
+     *         class {@link TypedArray}. The typed array may not be null
      */
     @SuppressWarnings("deprecation")
-    private void obtainDisabledColor(final TypedArray typedArray) {
+    private void obtainDisabledColor(@NonNull final TypedArray typedArray) {
         int defaultDisabledColor =
                 getResources().getColor(R.color.floating_action_button_disabled_color);
         disabledColor = typedArray
@@ -275,9 +277,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the ripple color should be obtained from, as an instance of the
-     *         class {@link TypedArray}
+     *         class {@link TypedArray}. The typed array may not be null
      */
-    private void obtainIcon(final TypedArray typedArray) {
+    private void obtainIcon(@NonNull final TypedArray typedArray) {
         Drawable icon = typedArray.getDrawable(R.styleable.FloatingActionButton_android_icon);
         setIcon(icon);
     }
@@ -288,9 +290,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param typedArray
      *         The typed array, the animation duration should be obtained from, as an instance of
-     *         the class {@link TypedArray}
+     *         the class {@link TypedArray}. The typed array may not be null
      */
-    private void obtainVisibilityAnimationDuration(final TypedArray typedArray) {
+    private void obtainVisibilityAnimationDuration(@NonNull final TypedArray typedArray) {
         int defaultAnimationDuration = getResources()
                 .getInteger(R.integer.floating_action_button_visibility_animation_duration);
         int duration = typedArray
@@ -537,9 +539,9 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param context
      *         The context, which should be used by the view, as an instance of the class {@link
-     *         Context}
+     *         Context}. The context may not be null
      */
-    public FloatingActionButton(final Context context) {
+    public FloatingActionButton(@NonNull final Context context) {
         this(context, null);
     }
 
@@ -549,12 +551,13 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param context
      *         The context, which should be used by the view, as an instance of the class {@link
-     *         Context}
+     *         Context}. The context may not be null
      * @param attributeSet
      *         The attribute set, the view's attributes should be obtained from, as an instance of
-     *         the type {@link AttributeSet}
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    public FloatingActionButton(final Context context, final AttributeSet attributeSet) {
+    public FloatingActionButton(@NonNull final Context context,
+                                @Nullable final AttributeSet attributeSet) {
         super(context, attributeSet);
         initialize(attributeSet);
     }
@@ -565,17 +568,17 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param context
      *         The context, which should be used by the view, as an instance of the class {@link
-     *         Context}
+     *         Context}. The context may not be null
      * @param attributeSet
      *         The attribute set, the view's attributes should be obtained from, as an instance of
-     *         the type {@link AttributeSet}
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      * @param defaultStyle
      *         The default style to apply to this view. If 0, no style will be applied (beyond what
      *         is included in the theme). This may either be an attribute resource, whose value will
      *         be retrieved from the current theme, or an explicit style resource
      */
-    public FloatingActionButton(final Context context, final AttributeSet attributeSet,
-                                final int defaultStyle) {
+    public FloatingActionButton(@NonNull final Context context,
+                                @Nullable final AttributeSet attributeSet, final int defaultStyle) {
         super(context, attributeSet, defaultStyle);
         initialize(attributeSet);
     }
@@ -586,10 +589,10 @@ public class FloatingActionButton extends RelativeLayout {
      *
      * @param context
      *         The context, which should be used by the view, as an instance of the class {@link
-     *         Context}
+     *         Context}. The context may not be null
      * @param attributeSet
-     *         The attributes of the XML tag that is inflating the view, as an instance of the type
-     *         {@link AttributeSet}
+     *         The attribute set, the view's attributes should be obtained from, as an instance of
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      * @param defaultStyle
      *         The default style to apply to this preference. If 0, no style will be applied (beyond
      *         what is included in the theme). This may either be an attribute resource, whose value
@@ -600,8 +603,9 @@ public class FloatingActionButton extends RelativeLayout {
      *         be 0 to not look for defaults
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public FloatingActionButton(final Context context, final AttributeSet attributeSet,
-                                final int defaultStyle, final int defaultStyleResource) {
+    public FloatingActionButton(@NonNull final Context context,
+                                @Nullable final AttributeSet attributeSet, final int defaultStyle,
+                                final int defaultStyleResource) {
         super(context, attributeSet, defaultStyle, defaultStyleResource);
         initialize(attributeSet);
     }
@@ -623,7 +627,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         The size, which should be set, as a value of the enum {@link Size}. The size must
      *         either be <code>NORMAL</code> or <code>SMALL</code>
      */
-    public final void setSize(final Size size) {
+    public final void setSize(@NonNull final Size size) {
         ensureNotNull(size, "The size may not be null");
         this.size = size;
         adaptShadow();
@@ -648,7 +652,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         The icon, which should be set, as an instance of the class {@link Drawable} or null,
      *         if no icon should be set
      */
-    public final void setIcon(final Drawable icon) {
+    public final void setIcon(@Nullable final Drawable icon) {
         imageButton.setImageDrawable(icon);
     }
 
@@ -798,12 +802,12 @@ public class FloatingActionButton extends RelativeLayout {
     }
 
     @Override
-    public final void setOnClickListener(final OnClickListener listener) {
+    public final void setOnClickListener(@Nullable final OnClickListener listener) {
         imageButton.setOnClickListener(listener);
     }
 
     @Override
-    public final void setOnLongClickListener(final OnLongClickListener listener) {
+    public final void setOnLongClickListener(@Nullable final OnLongClickListener listener) {
         imageButton.setOnLongClickListener(listener);
     }
 

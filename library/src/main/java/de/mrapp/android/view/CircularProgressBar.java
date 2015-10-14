@@ -21,6 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -56,10 +57,10 @@ public class CircularProgressBar extends View {
      * Initializes the view.
      *
      * @param attributeSet
-     *         The attribute set, the view's attribute should be obtained from, as an instance of
-     *         the type {@link AttributeSet}
+     *         The attribute set, the view's attributes should be obtained from, as an instance of
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    private void initialize(final AttributeSet attributeSet) {
+    private void initialize(@Nullable final AttributeSet attributeSet) {
         obtainStyledAttributes(attributeSet);
         initializeDrawable();
     }
@@ -69,9 +70,9 @@ public class CircularProgressBar extends View {
      *
      * @param attributeSet
      *         The attribute set, the view's attributes should be obtained from, as an instance of
-     *         the type {@link AttributeSet}
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    private void obtainStyledAttributes(final AttributeSet attributeSet) {
+    private void obtainStyledAttributes(@Nullable final AttributeSet attributeSet) {
         TypedArray typedArray =
                 getContext().obtainStyledAttributes(attributeSet, R.styleable.CircularProgressBar);
 
@@ -88,9 +89,9 @@ public class CircularProgressBar extends View {
      *
      * @param typedArray
      *         The typed array, the color should be obtained from, as an instance of the class
-     *         {@link TypedArray}
+     *         {@link TypedArray}. The typed array may not be null
      */
-    private void obtainColor(final TypedArray typedArray) {
+    private void obtainColor(@NonNull final TypedArray typedArray) {
         int defaultColor = getAccentColor();
         color = typedArray.getColor(R.styleable.CircularProgressBar_android_color, defaultColor);
     }
@@ -100,9 +101,9 @@ public class CircularProgressBar extends View {
      *
      * @param typedArray
      *         The typed array, the thickness should be obtained from, as an instance of the class
-     *         {@link TypedArray}
+     *         {@link TypedArray}. The typed array may not be null
      */
-    private void obtainThickness(final TypedArray typedArray) {
+    private void obtainThickness(@NonNull final TypedArray typedArray) {
         int defaultThickness = getContext().getResources()
                 .getDimensionPixelSize(R.dimen.circular_progress_bar_thickness_normal);
         thickness = typedArray
@@ -135,9 +136,10 @@ public class CircularProgressBar extends View {
      * guidelines.
      *
      * @param context
-     *         The context, the view should belong to, as an instance of the class {@link Context}
+     *         The context, the view should belong to, as an instance of the class {@link Context}.
+     *         The context may not be null
      */
-    public CircularProgressBar(final Context context) {
+    public CircularProgressBar(@NonNull final Context context) {
         this(context, null);
     }
 
@@ -146,11 +148,14 @@ public class CircularProgressBar extends View {
      * guidelines.
      *
      * @param context
-     *         The context, the view should belong to, as an instance of the class {@link Context}
+     *         The context, the view should belong to, as an instance of the class {@link Context}.
+     *         The context may not be null
      * @param attributeSet
-     *         The attributes of the XML tag that is inflating the view
+     *         The attribute set, the view's attributes should be obtained from, as an instance of
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    public CircularProgressBar(final Context context, final AttributeSet attributeSet) {
+    public CircularProgressBar(@NonNull final Context context,
+                               @Nullable final AttributeSet attributeSet) {
         super(context, attributeSet);
         initialize(attributeSet);
     }
@@ -160,15 +165,17 @@ public class CircularProgressBar extends View {
      * guidelines.
      *
      * @param context
-     *         The context, the view should belong to, as an instance of the class {@link Context}
+     *         The context, the view should belong to, as an instance of the class {@link Context}.
+     *         The context may not be null
      * @param attributeSet
-     *         The attributes of the XML tag that is inflating the view
+     *         The attribute set, the view's attributes should be obtained from, as an instance of
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      * @param defaultStyle
      *         The default style to apply to this view. If 0, no style will be applied (beyond what
      *         is included in the theme). This may either be an attribute resource, whose value will
      *         be retrieved from the current theme, or an explicit style resource
      */
-    public CircularProgressBar(final Context context, final AttributeSet attributeSet,
+    public CircularProgressBar(final Context context, @Nullable final AttributeSet attributeSet,
                                final int defaultStyle) {
         super(context, attributeSet, defaultStyle);
         initialize(attributeSet);
@@ -180,10 +187,10 @@ public class CircularProgressBar extends View {
      *
      * @param context
      *         The context, which should be used by the view, as an instance of the class {@link
-     *         Context}
+     *         Context}. The context may not be null
      * @param attributeSet
-     *         The attributes of the XML tag that is inflating the view, as an instance of the type
-     *         {@link AttributeSet}
+     *         The attribute set, the view's attributes should be obtained from, as an instance of
+     *         the type {@link AttributeSet} or null, if no attributes should be obtained
      * @param defaultStyle
      *         The default style to apply to this preference. If 0, no style will be applied (beyond
      *         what is included in the theme). This may either be an attribute resource, whose value
@@ -194,8 +201,9 @@ public class CircularProgressBar extends View {
      *         be 0 to not look for defaults
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CircularProgressBar(final Context context, final AttributeSet attributeSet,
-                               final int defaultStyle, final int defaultStyleResource) {
+    public CircularProgressBar(@NonNull final Context context,
+                               @Nullable final AttributeSet attributeSet, final int defaultStyle,
+                               final int defaultStyleResource) {
         super(context, attributeSet, defaultStyle, defaultStyleResource);
         initialize(attributeSet);
     }
@@ -243,7 +251,7 @@ public class CircularProgressBar extends View {
     }
 
     @Override
-    public final void draw(final Canvas canvas) {
+    public final void draw(@NonNull final Canvas canvas) {
         super.draw(canvas);
         circularProgressDrawable.draw(canvas);
     }
@@ -272,14 +280,15 @@ public class CircularProgressBar extends View {
     }
 
     @Override
-    protected final void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        circularProgressDrawable.setBounds(0, 0, w, h);
+    protected final void onSizeChanged(final int width, final int height, final int oldWidth,
+                                       final int oldHeight) {
+        super.onSizeChanged(width, height, oldWidth, oldHeight);
+        circularProgressDrawable.setBounds(0, 0, width, height);
     }
 
     @Override
-    protected final boolean verifyDrawable(final Drawable who) {
-        return who == circularProgressDrawable || super.verifyDrawable(who);
+    protected final boolean verifyDrawable(@NonNull final Drawable drawable) {
+        return drawable == circularProgressDrawable || super.verifyDrawable(drawable);
     }
 
 }
