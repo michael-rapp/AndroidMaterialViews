@@ -1,4 +1,4 @@
-# AndroidUtil - README
+# AndroidMaterialViews - README
 
 "AndroidMaterialViews" is an Android-library, which provides various views, which are part of Android's Material Design guidelines, but which are not provided by the official Android SDK. The library's views can also be used on pre-Lollipop devices.
 
