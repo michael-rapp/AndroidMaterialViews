@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/michael/Android%20Studio/AndroidMaterialViews/library/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="floating_action_button_disabled_color">#ffd2d2d2</color>
+    <declare-styleable name="CircularProgressBar"><attr name="android:thickness"/><attr name="android:color"/></declare-styleable>
+    <declare-styleable name="FloatingActionButton"><attr name="android:icon"/><attr name="android:color"/><attr format="color" name="activatedColor"/><attr format="color" name="pressedColor"/><attr format="color" name="disabledColor"/><attr format="integer" name="visibilityAnimationDuration"/><attr format="enum" name="size"><enum name="normal" value="0"/><enum name="small" value="1"/><enum name="large" value="2"/></attr></declare-styleable>
+    <!-- From: file:/home/michael/Android%20Studio/AndroidMaterialViews/library/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="circular_progress_bar_size_normal">48dp</dimen>
+    <dimen name="circular_progress_bar_size_small">32dp</dimen>
+    <dimen name="circular_progress_bar_thickness_normal">5dp</dimen>
+    <dimen name="circular_progress_bar_thickness_small">3dp</dimen>
+    <dimen name="floating_action_button_shadow_size">16dp</dimen>
+    <dimen name="floating_action_button_size_large">92dp</dimen>
+    <dimen name="floating_action_button_size_normal">56dp</dimen>
+    <dimen name="floating_action_button_size_small">40dp</dimen>
+    <!-- From: file:/home/michael/Android%20Studio/AndroidMaterialViews/library/src/main/res/values/integers.xml -->
+    <eat-comment/>
+    <integer name="floating_action_button_visibility_animation_duration">250</integer>
+</resources>
