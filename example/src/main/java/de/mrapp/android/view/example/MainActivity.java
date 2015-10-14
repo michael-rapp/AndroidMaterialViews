@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU Lesser General Public License along with this program.
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package de.mrapp.android.view;
+package de.mrapp.android.view.example;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import de.mrapp.android.view.FloatingActionButton;
 
 /**
  * The example app's main activity.
