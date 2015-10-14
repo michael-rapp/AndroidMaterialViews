@@ -23,6 +23,8 @@ dependencies {
 }
 ```
 
+Before version 2.0.0 this project was hosted on [Sourceforge](https://sourceforge.net/projects/androidmaterialviews). These older versions used the legacy Eclipse ADT folder structure and are not available as Gradle artifacts.
+
 ## Contact information
 
 For personal feedback or questions feel free to contact me via the mail address, which is mentioned on my [Github profile](https://github.com/michael-rapp). If you have found any bugs or want to post a feature request please use the [bugtracker](https://github.com/michael-rapp/AndroidMaterialViews/issues) to report them.
