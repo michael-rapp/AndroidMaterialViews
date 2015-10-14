@@ -32,7 +32,7 @@ import android.view.animation.LinearInterpolator;
 
 import de.mrapp.android.view.CircularProgressBar;
 
-import static de.mrapp.android.view.util.Condition.ensureAtLeast;
+import static de.mrapp.android.util.Condition.ensureAtLeast;
 
 /**
  * An animated drawable, which is used by the view {@link CircularProgressBar}.
