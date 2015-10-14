@@ -27,7 +27,7 @@ Before version 2.0.0 this project was hosted on [Sourceforge](https://sourceforg
 
 ## Examples
 
-The following examples provide a quick overview on how to use the views, which are provided by this library, in your own Android app.
+The following examples provide a quick overview on how to use the views, which are provided by the library, in your own Android app. This project also contains the source code of an example app, which implements an use case of the library for demonstration purposes.  
 
 ### CircularProgressBar
 
