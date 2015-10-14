@@ -16,13 +16,7 @@ If not, see <http://www.gnu.org/licenses/>.
 -->
 <manifest
     package="de.mrapp.android.view"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="5"
-    android:versionName="2.0.0">
-
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="23"/>
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
