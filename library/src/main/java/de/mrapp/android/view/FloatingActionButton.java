@@ -802,12 +802,12 @@ public class FloatingActionButton extends RelativeLayout {
     }
 
     @Override
-    public final void setOnClickListener(@Nullable final OnClickListener listener) {
+    public final void setOnClickListener(final OnClickListener listener) {
         imageButton.setOnClickListener(listener);
     }
 
     @Override
-    public final void setOnLongClickListener(@Nullable final OnLongClickListener listener) {
+    public final void setOnLongClickListener(final OnLongClickListener listener) {
         imageButton.setOnLongClickListener(listener);
     }
 

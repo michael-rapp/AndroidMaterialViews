@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected final void onCreate(@Nullable final Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeToolbar();
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected final void onSaveInstanceState(@NonNull final Bundle outState) {
+    protected final void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(FLOATING_ACTION_BUTTONS_VISIBLE_EXTRA, floatingActionButtonsVisible);
     }

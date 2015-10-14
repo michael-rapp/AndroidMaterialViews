@@ -251,7 +251,7 @@ public class CircularProgressBar extends View {
     }
 
     @Override
-    public final void draw(@NonNull final Canvas canvas) {
+    public final void draw(final Canvas canvas) {
         super.draw(canvas);
         circularProgressDrawable.draw(canvas);
     }
@@ -287,7 +287,7 @@ public class CircularProgressBar extends View {
     }
 
     @Override
-    protected final boolean verifyDrawable(@NonNull final Drawable drawable) {
+    protected final boolean verifyDrawable(final Drawable drawable) {
         return drawable == circularProgressDrawable || super.verifyDrawable(drawable);
     }
 
