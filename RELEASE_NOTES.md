@@ -1,5 +1,12 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 2.0.0 (Oct. 15th 2015)
+
+A major release, which introduces the following changes:
+
+- The project has been migrated from the legacy Eclipse ADT folder structure to Android Studio. It now uses the Gradle build system and the library as well as the example app are contained by one single project.
+- The library can now be added to Android apps using the Gradle dependency `com.github.michael-rapp:android-material-views:2.0.0`
+
 ## Version 1.0.3 (Oct. 4th 2015)
 
 A minor release, which introduces the following changes:
