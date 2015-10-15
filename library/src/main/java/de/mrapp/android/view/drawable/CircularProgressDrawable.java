@@ -26,6 +26,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.util.Property;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -248,7 +249,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
      * @param thickness
      *         The thickness of the progress drawable as an {@link Integer} value in pixels
      */
-    public CircularProgressDrawable(final int color, final int thickness) {
+    public CircularProgressDrawable(@ColorInt final int color, final int thickness) {
         ensureAtLeast(thickness, 1, "The thickness must be at least 1");
         this.color = color;
         this.thickness = thickness;
