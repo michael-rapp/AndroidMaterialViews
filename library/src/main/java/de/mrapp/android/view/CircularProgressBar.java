@@ -20,6 +20,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -223,7 +224,7 @@ public class CircularProgressBar extends View {
      * @param color
      *         The color, which should be set, as an {@link Integer} value
      */
-    public final void setColor(final int color) {
+    public final void setColor(@ColorInt final int color) {
         this.color = color;
         initializeDrawable();
         invalidate();

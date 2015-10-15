@@ -28,6 +28,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -412,7 +414,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         The color of the background as an {@link Integer} value
      * @return The drawable, which has been created, as an instance of the class {@link Drawable}
      */
-    private Drawable createBackgroundDrawable(final int color) {
+    private Drawable createBackgroundDrawable(@ColorInt final int color) {
         OvalShape shape = new OvalShape();
         ShapeDrawable drawable = new ShapeDrawable(shape);
         drawable.getPaint().setColor(color);
@@ -663,7 +665,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         The resource id of the icon, which should be set, as an {@link Integer} value. The
      *         resource id must correspond to a valid drawable resource
      */
-    public final void setIcon(final int resourceId) {
+    public final void setIcon(@DrawableRes final int resourceId) {
         imageButton.setImageResource(resourceId);
     }
 
@@ -682,7 +684,7 @@ public class FloatingActionButton extends RelativeLayout {
      * @param color
      *         The color, which should be set, as an {@link Integer} value
      */
-    public final void setColor(final int color) {
+    public final void setColor(@ColorInt final int color) {
         this.color = color;
         adaptImageButtonBackground();
     }
@@ -705,7 +707,7 @@ public class FloatingActionButton extends RelativeLayout {
      * @param color
      *         The color, which should be set, as an {@link Integer} value
      */
-    public final void setActivatedColor(final int color) {
+    public final void setActivatedColor(@ColorInt final int color) {
         this.activatedColor = color;
         adaptImageButtonBackground();
     }
@@ -727,7 +729,7 @@ public class FloatingActionButton extends RelativeLayout {
      * @param color
      *         The color, which should be set, as an {@link Integer} value
      */
-    public final void setPressedColor(final int color) {
+    public final void setPressedColor(@ColorInt final int color) {
         this.pressedColor = color;
         adaptImageButtonBackground();
     }
@@ -749,7 +751,7 @@ public class FloatingActionButton extends RelativeLayout {
      * @param color
      *         The color, which should be set, as an {@link Integer} value
      */
-    public final void setDisabledColor(final int color) {
+    public final void setDisabledColor(@ColorInt final int color) {
         this.disabledColor = color;
         adaptImageButtonBackground();
     }
