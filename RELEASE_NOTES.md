@@ -1,6 +1,6 @@
 # AndroidMaterialViews - RELEASE NOTES
 
-## Version 2.0.0 (Oct. 15th 2015)
+## Version 2.0.0 (Oct. 16th 2015)
 
 A major release, which introduces the following changes:
 
