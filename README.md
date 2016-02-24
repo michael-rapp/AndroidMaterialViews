@@ -21,7 +21,7 @@ The latest release of this library can be downloaded as a zip archive from the d
 
 Alternatively, the library can be added to your Android app as a Gradle dependency by adding the following to the respective module's `build.gradle` file:
 
-```
+```groovy
 dependencies {
     compile 'com.github.michael-rapp:android-material-views:2.0.1'
 }
@@ -37,7 +37,7 @@ The following examples provide a quick overview on how to use the views, which a
 
 The XML code below shows how the view `CircularProgressBar` can be added to a XML layout resource. This example contains all of the view's custom attributes.
 
-```
+```java
 <?xml version="1.0" encoding="utf-8"?> 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent" 
@@ -57,7 +57,7 @@ The XML code below shows how the view `CircularProgressBar` can be added to a XM
 
 The following example demonstrates how a `FloatingActionButton` can be declared within a XML layout resource. The example contains all of the view's custom attributes.
 
-```
+```java
 <?xml version="1.0" encoding="utf-8"?> 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     xmlns:custom="http://schemas.android.com/apk/res-auto" 
