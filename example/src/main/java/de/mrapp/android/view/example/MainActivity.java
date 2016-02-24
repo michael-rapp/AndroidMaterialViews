@@ -15,10 +15,8 @@
 package de.mrapp.android.view.example;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -59,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
      * True, if the floating action buttons are currently visible, false otherwise.
      */
     private boolean floatingActionButtonsVisible = true;
-
-    /**
-     * Initializes the activity's toolbar.
-     */
-    private void initializeToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
 
     /**
      * Initializes the floating action buttons.
@@ -156,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeToolbar();
         initializeFloatingActionButtons();
         initializeHideFloatingActionButtonsButton();
         handleSavedInstanceState(savedInstanceState);
