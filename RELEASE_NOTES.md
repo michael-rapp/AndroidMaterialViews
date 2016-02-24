@@ -1,5 +1,14 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 2.0.1 (Feb. 24th 2016)
+
+A minor release, which introduces the following changes:
+
+- The library is from now on distributed under the Apache License version 2.0. 
+- Updated dependency "AndroidUtil" to version 1.4.3.
+- Updated AppCompat support library to version 23.1.1.
+- Minor changes of the example app.
+
 ## Version 2.0.0 (Oct. 16th 2015)
 
 A major release, which introduces the following changes:
