@@ -22,6 +22,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -176,7 +177,7 @@ public class CircularProgressBar extends View {
      *         be retrieved from the current theme, or an explicit style resource
      */
     public CircularProgressBar(final Context context, @Nullable final AttributeSet attributeSet,
-                               final int defaultStyle) {
+                               @StyleRes final int defaultStyle) {
         super(context, attributeSet, defaultStyle);
         initialize(attributeSet);
     }
@@ -202,8 +203,8 @@ public class CircularProgressBar extends View {
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public CircularProgressBar(@NonNull final Context context,
-                               @Nullable final AttributeSet attributeSet, final int defaultStyle,
-                               final int defaultStyleResource) {
+                               @Nullable final AttributeSet attributeSet,
+                               @StyleRes final int defaultStyle, final int defaultStyleResource) {
         super(context, attributeSet, defaultStyle, defaultStyleResource);
         initialize(attributeSet);
     }
