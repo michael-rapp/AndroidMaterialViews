@@ -32,5 +32,13 @@ License.
             <enum name="large" value="2"/>
         </attr>
     </declare-styleable>
+    <declare-styleable name="Chip">
+        <attr name="android:text"/>
+        <attr name="android:icon"/>
+        <attr name="android:textColor"/>
+        <attr name="android:color"/>
+        <attr name="closable" format="boolean"/>
+        <attr name="closeButtonIcon" format="reference"/>
+    </declare-styleable>
 
 </resources>

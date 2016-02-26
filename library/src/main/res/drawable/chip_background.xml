@@ -13,12 +13,7 @@ distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, e
 implied. See the License for the specific language governing permissions and limitations under the
 License.
 -->
-<resources>
-
-    <color name="floating_action_button_disabled_color">#ffd2d2d2</color>
-    <color name="chip_text_color_light">#ff1e1e1e</color>
-    <color name="chip_text_color_dark">@android:color/white</color>
-    <color name="chip_color_light">#ffe0dfe1</color>
-    <color name="chip_color_dark">#ff767577</color>
-
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/chip_color_light"/>
+    <corners android:radius="@dimen/chip_corner_radius"/>
+</shape>

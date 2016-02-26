@@ -109,6 +109,90 @@ License.
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/form_spacing"
             android:text="@string/hide_floating_action_buttons"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/header_spacing"
+            android:text="@string/chip"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:text="@string/chip_text"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_dark"
+            style="@style/Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:text="@string/chip_text"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_icon_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:icon="@drawable/chip_icon"
+            android:text="@string/chip_text"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_icon_dark"
+            style="@style/Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:icon="@drawable/chip_icon"
+            android:text="@string/chip_text"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_closable_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:text="@string/chip_text"
+            custom:closable="true"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_closable_dark"
+            style="@style/Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:text="@string/chip_text"
+            custom:closable="true"/>
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_icon_closable_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:icon="@drawable/chip_icon"
+            android:text="@string/chip_text"
+            custom:closable="true"/>
+
+
+        <de.mrapp.android.view.Chip
+            android:id="@+id/chip_icon_closable_dark"
+            style="@style/Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/form_spacing"
+            android:icon="@drawable/chip_icon"
+            android:text="@string/chip_text"
+            custom:closable="true"/>
     </LinearLayout>
 
 </ScrollView>

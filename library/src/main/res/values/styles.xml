@@ -15,10 +15,16 @@ License.
 -->
 <resources>
 
-    <color name="floating_action_button_disabled_color">#ffd2d2d2</color>
-    <color name="chip_text_color_light">#ff1e1e1e</color>
-    <color name="chip_text_color_dark">@android:color/white</color>
-    <color name="chip_color_light">#ffe0dfe1</color>
-    <color name="chip_color_dark">#ff767577</color>
+    <style name="Chip" parent="@style/Theme.AppCompat">
+        <item name="android:textColor">@color/chip_text_color_dark</item>
+        <item name="android:color">@color/chip_color_dark</item>
+        <item name="closeButtonIcon">@drawable/chip_close_button_dark</item>
+    </style>
+
+    <style name="Chip.Light" parent="@style/Theme.AppCompat.Light">
+        <item name="android:textColor">@color/chip_text_color_light</item>
+        <item name="android:color">@color/chip_color_light</item>
+        <item name="closeButtonIcon">@drawable/chip_close_button_light</item>
+    </style>
 
 </resources>

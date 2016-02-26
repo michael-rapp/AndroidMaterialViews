@@ -14,6 +14,7 @@
 package de.mrapp.android.view.example;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import de.mrapp.android.view.Chip;
 import de.mrapp.android.view.FloatingActionButton;
 
 /**
@@ -123,6 +125,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Initializes all closable chips.
+     */
+    private void initializeChips() {
+        Chip closableChipLight = (Chip) findViewById(R.id.chip_closable_light);
+        closableChipLight.addCloseListener(createChipCloseListener());
+        Chip closableChipDark = (Chip) findViewById(R.id.chip_closable_dark);
+        closableChipDark.addCloseListener(createChipCloseListener());
+        Chip closableIconChipLight = (Chip) findViewById(R.id.chip_icon_closable_light);
+        closableIconChipLight.addCloseListener(createChipCloseListener());
+        Chip closableIconChipDark = (Chip) findViewById(R.id.chip_icon_closable_dark);
+        closableIconChipDark.addCloseListener(createChipCloseListener());
+    }
+
+    /**
+     * Creates and returns a listener, which allows to show a toast, when a chip has been closed.
+     *
+     * @return The listener, which has been created, as an instance of the type {@link
+     * Chip.CloseListener}
+     */
+    private Chip.CloseListener createChipCloseListener() {
+        return new Chip.CloseListener() {
+
+            @Override
+            public void onChipClosed(@NonNull final Chip chip) {
+                chip.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this, R.string.chip_closed_toast, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+        };
+    }
+
+    /**
      * Adapts the activity's views depending on the saved instance state, which has been passed to
      * the activity.
      *
@@ -147,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFloatingActionButtons();
         initializeHideFloatingActionButtonsButton();
+        initializeChips();
         handleSavedInstanceState(savedInstanceState);
     }
 

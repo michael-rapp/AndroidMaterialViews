@@ -20,5 +20,8 @@ License.
     <string name="floating_action_button">FloatingActionButton</string>
     <string name="floating_action_button_toast">Button clicked!</string>
     <string name="hide_floating_action_buttons">Hide/show buttons</string>
+    <string name="chip">Chip</string>
+    <string name="chip_text">This is a chip</string>
+    <string name="chip_closed_toast">Chip closed</string>
 
 </resources>
