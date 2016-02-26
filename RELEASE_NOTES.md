@@ -1,5 +1,11 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 2.1.0 (Feb. 26th 2016)
+
+A feature release, which introduces the following changes:
+
+- The class `Chip` has been added. It implements a tag-like view as proposed by the Material design guidelines (http://www.google.com/design/spec/components/chips.html#) 
+
 ## Version 2.0.1 (Feb. 24th 2016)
 
 A minor release, which introduces the following changes:
