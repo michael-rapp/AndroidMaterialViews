@@ -103,7 +103,7 @@ The following XML code shows how a `Chip` can be added to a XML resource. The ex
 </RelativeLayout>
 ```
 
-If a dark theme should be used a `Chip`, this can be achieved by adding s `style`-tag like shown in the following:
+If a dark theme should be used by a `Chip`, this can be achieved by adding a `style`-tag like shown in the following:
 
 ```xml
 <de.mrapp.android.view.Chip 
