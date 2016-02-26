@@ -96,6 +96,34 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;R.color.floating_action_button_disabled_color));
 <br/>floatingActionButton.setVisibilityAnimationDuration(500L);</div>
 
+                <h4>Declaring a Chip widget via XML</h4>
+
+		<p>The code below illustrates how a <a href="javadoc/de/mrapp/android/view/Chip.html" target="_blank" class="code">Chip</a> widget can be declared within a XML layout resource. The example contains all of the view's custom attributes.</p>
+
+                <div class="xml-block"><font color='#3f7f5f'>&lt;?xml</font>&nbsp;version=<font color='#2a00ff'>"1.0"</font>&nbsp;encoding=<font color='#2a00ff'>"utf-8"</font>?&gt;
+<br/><font color='#3f7f5f'>&lt;RelativeLayout&nbsp;</font>xmlns:android="<font color='#2a00ff'>http://schemas.android.com/apk/res/android</font>"
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;xmlns:custom=<font color='#2a00ff'>"http://schemas.android.com/apk/res-auto"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width=<font color='#2a00ff'>"match_parent"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height=<font color='#2a00ff'>"match_parent"</font>&nbsp;<font color='#3f7f5f'>&gt;</font><br/>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>&lt;de.mrapp.android.view.Chip</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:id=<font color='#2a00ff'>"@+id/chip"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width=<font color='#2a00ff'>"wrap_content"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height=<font color='#2a00ff'>"wrap_content"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:text=<font color='#2a00ff'>"@string/chip_text"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:color=<font color='#2a00ff'>"@color/chip_color"</font>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:icon=<font color='#2a00ff'>"@drawable/chip_icon"</font>
+<br/>
+<br/><font color='#3f7f5f'>&lt;/RelativeLayout&gt;</font></div>
+
+                <h4>Instantiating a Chip widget programatically</h4>
+
+                <p>The Java code below shows how a <a href="javadoc/de/mrapp/android/view/Chip.html" target="_blank" class="code">Chip</a> widget can be initialized programmatically. The attributes, which are configured by using the view's setter methods, are the same as shown in the previous example.</p>
+
+                <div class="code-block">Chip&nbsp;chip&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Chip(<strong><font color='#7f0055'>this</font></strong>);
+<br/>chip.setText(getText(R.string.chip_text));
+<br/>chip.setColor(getResources().getColor(R.color.chip_color));
+<br/>chip.setIcon(R.drawable.chip_icon);</div>
+
             </div>
 
             <div class="copyright">

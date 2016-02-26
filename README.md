@@ -8,6 +8,7 @@ The library provides the following views:
 
 - A `CircularProgressBar`, which allows to visualize an indeterminate progress as an animated circle.
 - A `FloatingActionButton`, which is a round, colored button with a shadow and an icon. The button supports to become shown or hidden in an animated manner.
+- A `Chip`, which acts like a tag, containing a text and optionally an icon and a close button.
 
 ## License Agreement
 
@@ -77,6 +78,37 @@ The following example demonstrates how a `FloatingActionButton` can be declared 
         custom:visibilityAnimationDuration="500" /> 
 
 </RelativeLayout>
+```
+
+## Chip
+
+The following XML code shows how a `Chip` can be added to a XML resource. The example contains a text as well as an icon and a close button. By using a Chip's `addCloseListener`-method, listeners can be registered to be notified when a chip has been closed.
+
+
+```xml
+<?xml version="1.0" encoding="utf-8"?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:custom="http://schemas.android.com/apk/res-auto" 
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent" >
+
+    <de.mrapp.android.view.Chip 
+        android:id="@+id/chip" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:text="@string/chip_text"
+        android:color="@color/chip_color_" 
+        android:icon="@drawable/chip_icon" /> 
+
+</RelativeLayout>
+```
+
+If a dark theme should be used a `Chip`, this can be achieved by adding s `style`-tag like shown in the following:
+
+```xml
+<de.mrapp.android.view.Chip 
+    style="@style/Chip"
+    ...
 ```
 
 ## Contact information

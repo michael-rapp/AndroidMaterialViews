@@ -216,6 +216,114 @@
 
 		<p>Besides changing the visibility of a <a href="javadoc/de/mrapp/android/view/FloatingActionButton.html" target="_blank" class="code">FloatingActionButton</a> via the method <tt>setVisibility(int):void</tt>, showing or hiding the view is also possible in an animated manner. If visibility changes should be animated, the method <tt>setVisibility(int,boolean):void</tt> has to be used instead. The method's <tt>boolean</tt> parameter allows to specify, whether an animation should be used. When using the <tt>Integer</tt> parameter <tt>View.INVISIBLE</tt>, the view will become invisible, but its space is not released to be used by other views. When using the parameter <tt>View.GONE</tt>, the view's space will be released instead, after the animation has finished. The parameter <tt>View.VISIBLE</tt> allows to show a previously hidden <a href="javadoc/de/mrapp/android/view/FloatingActionButton.html" target="_blank" class="code">FloatingActionButton</a> again.</p>
 
+		<h5><a name="floating-action-button-getter-and-setters">Changing the appearance programmatically</a></h5>
+
+		<p>The following table shows the methods, which are provided by the class <a href="javadoc/de/mrapp/android/view/FloatingActionButton.html" target="_blank" class="code">FloatingActionButton</a> to be able to retrieve or set the view's attributes:</p>
+
+		<h4><a name="chip">3 Chip</a></h4>
+
+		<p>The view <a href="javadoc/de/mrapp/android/view/Chip.html" target="_blank" class="code">Chip</a> implements a chip, which acts like a tag and contains a text, as well as an optional icon and close button. For further information about this view type, refer to <a href="http://www.google.com/design/spec/components/chips.html" target="_blank" class="code">this</a> chapter of the Material Design guidelines. When showing a close button, the method <tt>addCloseListener(CloseListener):void</tt> can be used to register a listener, which should be notified, when the chip is closed. In the following sections the possibilities, which are provided to adapt the appearance of the chip, will be discussed.</p>
+
+		<h5><a name="chip-getter-and-setters">Changing the appearance programmatically</a></h5>
+
+		<p>The following table shows the methods, which are provided by the class <a href="javadoc/de/mrapp/android/view/Chip.html" target="_blank" class="code">Chip</a> in order to retrieve or set the view's attributes:</p>
+
+		<table>
+                    <tr>
+                        <th>Getter and setter methods</th>
+                        <th>Explaination</th>
+                        <th>Default value</th>
+			<th>Restrictions</th>
+                    </tr>
+                    <tr>
+                        <td><tt>getText():CharSequence</br>setText(CharSequence):void</br>setText(int):void</tt></td>
+                        <td>Allows to retrieve or set the text of the chip.</td>
+                        <td><center><tt>null</center></td>
+			<td><center>When specified via a resource ID, the resource id must correspond to a valid string resource</center></td>
+                    </tr>
+                    <tr>
+                        <td><tt>getTextColor():int</br>setTextColor(int):void</br>setTextColorResource(int):void</tt></td>
+                        <td>Allows to retrieve or set the text color of the chip's text.</td>
+                        <td><center><tt>@color/chip_text_color_light</tt></center></td>
+			<td><center>When specifying the text color via a resource ID, the resource ID must correspond to a valid color resource</center></td>
+                    </tr>
+                    <tr>
+                        <td><tt>getColor():int</br>setColor(int):void</br>setColorResource(int):void</tt></td>
+                        <td>Allows to retrieve or set the color of the chip.</td>
+                        <td><center><tt>@color/chip_color_light</tt></center></td>
+			<td><center>When specifying the color via a resource Id, the resource ID must correspond to a valid color resource</center></td>
+                    </tr>
+                    <tr>
+                        <td><tt>getIcon():Drawable</br>setIcon(Drawable):void</br>setIcon(Bitmap):void</tt></td>
+                        <td>Allows to retrieve or set the icon of the chip.</td>
+                        <td><center><tt>null</tt></center></td>
+			<td><center>none</center></td>
+                    </tr>
+                    <tr>
+                        <td><tt>isClosable():boolean</br>setClosable(boolean):void</tt></td>
+                        <td>Allows to retrieve or set, whether the chip should be closable, or not. When the chip is closable, a close button is shown.</td>
+                        <td><center><tt>false</tt></center></td>
+			<td><center>none</center></td>
+                    </tr>
+                    <tr>
+                        <td><tt>getCloseButtonIcon():Drawable</br>setCloseButtonIcon(Drawable):void</br>setCloseButtonIcon(Bitmap):void</tt></td>
+                        <td>Allows to retrieve or set the icon of the button, which allows to close the chip.</td>
+                        <td><center><tt>R.drawable.</br>chip_close_button_light</tt></center></td>
+			<td><center>The icon may not be null</center></td>
+                    </tr>
+		</table>
+
+		<h5><a name="chip-xml-attributes">Changing the appearance via XML</a></h5>
+
+		<p>The table below shows the XML attributes, which correspond to the getter and setter methods shown in the previous section. They can be used in order to adapt the appearance of a <a href="javadoc/de/mrapp/android/view/Chip.html" target="_blank" class="code">Chip</a> when definining it in a XML resource.</p>
+
+		<table>
+                    <tr>
+                        <th>XML attribute</th>
+                        <th>Explaination</th>
+			<th>Format</th>
+                        <th>Default value</th>
+                    </tr>
+                    <tr>
+                        <td><tt>android:text</tt></td>
+                        <td>Allows to specify the text of the chip</td>
+			<td><center><tt>string</tt></center></td>
+                        <td><center><tt>null</tt></center></td>
+                    </tr>   
+                    <tr>
+                        <td><tt>android:icon</tt></td>
+                        <td>Allows to specify the icon of the chip.</td>
+			<td><center><tt>drawable</tt></center></td>
+                        <td><center><tt>null</tt></center></td>
+                    </tr>                    
+		    <tr>
+                        <td><tt>android:textColor</tt></td>
+                        <td>Allows to specify the text color of the chip.</td>
+			<td><center><tt>color</tt></center></td>
+                        <td><center><tt>@color/chip_text_color_light</tt></center></td>
+                    </tr>
+                    <tr>
+ 			<td><tt>android:color</tt></td>
+                        <td>Allows to specify the color of the chip.</td>
+			<td><center><tt>color</tt></center></td>
+                        <td><center><tt>@color/chip_color_light</tt></center></td>
+                    </tr>
+		    <tr>
+ 			<td><tt>custom:closable</tt></td>
+                        <td>Allows to specify whether the chip should be closable, or not.</td>
+			<td><center><tt>boolean</tt></center></td>
+                        <td><center><tt>false</tt></center></td>
+                    </tr>
+                    <tr>
+ 			<td><tt>custom:closeButtonIcon</tt></td>
+                        <td>Allows to specify the icon of the button, which allows to close the chip.</td>
+			<td><center><tt>reference</tt></center></td>
+                        <td><center><tt>R.drawable.chip_close_button_light</tt></center></td>
+                    </tr>
+		</table>
+
+        <p>By default chips use a light theme, represented by the resource id <tt>R.style.Chip_Light</tt>. If the theme should be change to changed to a dark theme, the resource id <tt>R.style.Chip</tt> has either to be passed to the constructor of the class <a href="javadoc/de/mrapp/android/view/Chip.html" target="_blank" class="code">Chip</a>, when creating the view programatically, or to the <tt>style</tt>-attribute, when declaring it via XML.</p>
+
                 <h4>External references:</h4>
 
                 <div class="reference"><a name="reference1" class="reference">[1]</a><a href="http://www.google.com/design/spec/components/progress-activity.html" target="_blank">http://www.google.com/design/spec/components/progress-activity.html</a> &#150; Progress & activity</div>
