@@ -17,7 +17,7 @@ License.
 
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">#ffd64937</item>
-        <item name="colorPrimaryDark">#ffd64937</item>
+        <item name="colorPrimaryDark">#ffbb4030</item>
         <item name="colorAccent">#ffd64937</item>
     </style>
 
