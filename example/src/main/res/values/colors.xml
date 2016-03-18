@@ -15,10 +15,8 @@ License.
 -->
 <resources>
 
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
-    </style>
+    <color name="color_primary">#ffd64937</color>
+    <color name="color_primary_dark">#ffbb4030</color>
+    <color name="color_accent">#ffd64937</color>
 
 </resources>
