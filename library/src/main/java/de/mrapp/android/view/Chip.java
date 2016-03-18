@@ -24,6 +24,8 @@ import android.widget.TextView;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import de.mrapp.android.util.ViewUtil;
+
 import static de.mrapp.android.util.BitmapUtil.clipCircle;
 import static de.mrapp.android.util.BitmapUtil.drawableToBitmap;
 import static de.mrapp.android.util.Condition.ensureNotNull;
@@ -93,11 +95,11 @@ public class Chip extends FrameLayout {
      *         The attribute set, the view's attributes should be obtained from, as an instance of
      *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
-    @SuppressWarnings("deprecation")
     private void initialize(@Nullable final AttributeSet attributeSet) {
         listeners = new LinkedHashSet<>();
         inflateLayout();
-        setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.chip_background));
+        Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.chip_background);
+        ViewUtil.setBackground(this, background);
         obtainStyledAttributes(attributeSet);
     }
 

@@ -15,7 +15,6 @@ package de.mrapp.android.view;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -32,6 +31,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -39,6 +39,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+
+import de.mrapp.android.util.ViewUtil;
 
 import static de.mrapp.android.util.Condition.ensureAtLeast;
 import static de.mrapp.android.util.Condition.ensureNotNull;
@@ -266,10 +268,9 @@ public class FloatingActionButton extends RelativeLayout {
      *         The typed array, the disabled color should be obtained from, as an instance of the
      *         class {@link TypedArray}. The typed array may not be null
      */
-    @SuppressWarnings("deprecation")
     private void obtainDisabledColor(@NonNull final TypedArray typedArray) {
         int defaultDisabledColor =
-                getResources().getColor(R.color.floating_action_button_disabled_color);
+                ContextCompat.getColor(getContext(), R.color.floating_action_button_disabled_color);
         disabledColor = typedArray
                 .getColor(R.styleable.FloatingActionButton_disabledColor, defaultDisabledColor);
     }
@@ -333,18 +334,16 @@ public class FloatingActionButton extends RelativeLayout {
      * Adapts the background of the image button, which is used to show the floating image button's
      * background and icon, depending on the floating button's colors.
      */
-    @SuppressLint("NewApi")
-    @SuppressWarnings("deprecation")
     private void adaptImageButtonBackground() {
-        Drawable stateListDrawable = createStateListBackgroundDrawable();
+        Drawable background = createStateListBackgroundDrawable();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             RippleDrawable rippleDrawable = new RippleDrawable(
-                    new ColorStateList(new int[][]{{}}, new int[]{getPressedColor()}),
-                    stateListDrawable, null);
-            imageButton.setBackground(rippleDrawable);
+                    new ColorStateList(new int[][]{{}}, new int[]{getPressedColor()}), background,
+                    null);
+            ViewUtil.setBackground(imageButton, rippleDrawable);
         } else {
-            imageButton.setBackgroundDrawable(stateListDrawable);
+            ViewUtil.setBackground(imageButton, background);
         }
     }
 
