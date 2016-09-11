@@ -15,6 +15,7 @@ package de.mrapp.android.view;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -334,11 +335,12 @@ public class FloatingActionButton extends RelativeLayout {
      * Adapts the background of the image button, which is used to show the floating image button's
      * background and icon, depending on the floating button's colors.
      */
+    @SuppressLint("NewApi")
     private void adaptImageButtonBackground() {
         Drawable background = createStateListBackgroundDrawable();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            RippleDrawable rippleDrawable = new RippleDrawable(
+            Drawable rippleDrawable = new RippleDrawable(
                     new ColorStateList(new int[][]{{}}, new int[]{getPressedColor()}), background,
                     null);
             ViewUtil.setBackground(imageButton, rippleDrawable);
