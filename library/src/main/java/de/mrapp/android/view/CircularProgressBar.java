@@ -26,6 +26,7 @@ import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
 import android.view.View;
 
+import de.mrapp.android.util.ThemeUtil;
 import de.mrapp.android.view.drawable.CircularProgressDrawable;
 
 /**
@@ -93,7 +94,7 @@ public class CircularProgressBar extends View {
      *         {@link TypedArray}. The typed array may not be null
      */
     private void obtainColor(@NonNull final TypedArray typedArray) {
-        int defaultColor = getAccentColor();
+        int defaultColor = ThemeUtil.getColor(getContext(), R.attr.colorAccent);
         color = typedArray.getColor(R.styleable.CircularProgressBar_android_color, defaultColor);
     }
 
@@ -118,18 +119,6 @@ public class CircularProgressBar extends View {
     private void initializeDrawable() {
         circularProgressDrawable = new CircularProgressDrawable(getColor(), getThickness());
         circularProgressDrawable.setCallback(this);
-    }
-
-    /**
-     * Returns the color of the theme attribute <code>R.attr.colorAccent</code>.
-     *
-     * @return The color of the theme attribute <code>R.attr.colorAccent</code> as an {@link
-     * Integer} value
-     */
-    private int getAccentColor() {
-        TypedArray typedArray =
-                getContext().getTheme().obtainStyledAttributes(new int[]{R.attr.colorAccent});
-        return typedArray.getColor(0, 0);
     }
 
     /**
@@ -288,7 +277,7 @@ public class CircularProgressBar extends View {
     }
 
     @Override
-    protected final boolean verifyDrawable(final Drawable drawable) {
+    protected final boolean verifyDrawable(@NonNull final Drawable drawable) {
         return drawable == circularProgressDrawable || super.verifyDrawable(drawable);
     }
 
