@@ -1,5 +1,12 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 2.1.3 (Oct. 3rd 2016)
+
+A minor release, which introduces the following changes:
+
+- For drawing a `CircularProgressBar`, the view's padding is now taken into account.
+- The view `FloatingActionButton` is now marked as deprecated.
+
 ## Version 2.1.2 (Sep. 12th 2016)
 
 A minor release, which introduces the following changes:
