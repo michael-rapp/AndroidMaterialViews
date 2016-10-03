@@ -55,7 +55,11 @@ import static de.mrapp.android.util.Condition.ensureNotNull;
  *
  * @author Michael Rapp
  * @since 1.0.0
+ * @deprecated Since version 2.1.3 this class is deprecated in favor of the
+ * <code>FloatingActionButton</code>, which is now part of Android's official Design support
+ * library
  */
+@Deprecated
 public class FloatingActionButton extends RelativeLayout {
 
     /**
