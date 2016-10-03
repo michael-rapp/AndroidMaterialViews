@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
@@ -281,7 +282,7 @@ public class Chip extends FrameLayout {
      *         be retrieved from the current theme, or an explicit style resource
      */
     public Chip(final Context context, @Nullable final AttributeSet attributeSet,
-                @StyleRes final int defaultStyle) {
+                @AttrRes final int defaultStyle) {
         super(context, attributeSet, defaultStyle);
         initialize(attributeSet);
     }
@@ -306,7 +307,7 @@ public class Chip extends FrameLayout {
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public Chip(@NonNull final Context context, @Nullable final AttributeSet attributeSet,
-                @StyleRes final int defaultStyle, final int defaultStyleResource) {
+                @AttrRes final int defaultStyle, @StyleRes final int defaultStyleResource) {
         super(context, attributeSet, defaultStyle, defaultStyleResource);
         initialize(attributeSet);
     }
