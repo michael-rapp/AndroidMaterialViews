@@ -26,6 +26,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.util.Property;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -291,7 +292,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
     }
 
     @Override
-    public final void draw(final Canvas canvas) {
+    public final void draw(@NonNull final Canvas canvas) {
         float startAngle = currentGlobalAngle - currentGlobalAngleOffset;
         float sweepAngle = currentSweepAngle;
 
