@@ -270,10 +270,21 @@ public class CircularProgressBar extends View {
     }
 
     @Override
+    protected final void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
+        int measuredWidth =
+                MeasureSpec.getSize(widthMeasureSpec) + getPaddingLeft() + getPaddingRight();
+        int measuredHeight =
+                MeasureSpec.getSize(heightMeasureSpec) + getPaddingTop() + getPaddingBottom();
+        setMeasuredDimension(measuredWidth, measuredHeight);
+    }
+
+    @Override
     protected final void onSizeChanged(final int width, final int height, final int oldWidth,
                                        final int oldHeight) {
         super.onSizeChanged(width, height, oldWidth, oldHeight);
-        circularProgressDrawable.setBounds(0, 0, width, height);
+        circularProgressDrawable
+                .setBounds(getPaddingLeft(), getPaddingTop(), width - getPaddingRight(),
+                        height - getPaddingBottom());
     }
 
     @Override
