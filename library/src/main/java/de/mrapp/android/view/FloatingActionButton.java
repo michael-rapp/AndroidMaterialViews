@@ -41,6 +41,7 @@ import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import de.mrapp.android.util.ThemeUtil;
 import de.mrapp.android.util.ViewUtil;
 
 import static de.mrapp.android.util.Condition.ensureAtLeast;
@@ -232,7 +233,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         {@link TypedArray}. The typed array may not be null
      */
     private void obtainColor(@NonNull final TypedArray typedArray) {
-        int defaultColor = getAccentColor();
+        int defaultColor = ThemeUtil.getColor(getContext(), R.attr.colorAccent);
         color = typedArray.getColor(R.styleable.FloatingActionButton_android_color, defaultColor);
     }
 
@@ -435,18 +436,6 @@ public class FloatingActionButton extends RelativeLayout {
         } else {
             return getResources().getDimensionPixelSize(R.dimen.floating_action_button_size_large);
         }
-    }
-
-    /**
-     * Returns the color of the theme attribute <code>R.attr.colorAccent</code>.
-     *
-     * @return The color of the theme attribute <code>R.attr.colorAccent</code> as an {@link
-     * Integer} value
-     */
-    private int getAccentColor() {
-        TypedArray typedArray =
-                getContext().getTheme().obtainStyledAttributes(new int[]{R.attr.colorAccent});
-        return typedArray.getColor(0, 0);
     }
 
     /**
