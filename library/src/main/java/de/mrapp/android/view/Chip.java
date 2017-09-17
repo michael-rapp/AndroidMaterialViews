@@ -122,9 +122,9 @@ public class Chip extends FrameLayout {
      */
     private void inflateLayout() {
         View view = View.inflate(getContext(), R.layout.chip, null);
-        imageView = (ImageView) view.findViewById(android.R.id.icon);
-        textView = (TextView) view.findViewById(android.R.id.text1);
-        closeButton = (ImageButton) view.findViewById(android.R.id.closeButton);
+        imageView = view.findViewById(android.R.id.icon);
+        textView = view.findViewById(android.R.id.text1);
+        closeButton = view.findViewById(android.R.id.closeButton);
         closeButton.setOnClickListener(createCloseButtonListener());
         int height = getResources().getDimensionPixelSize(R.dimen.chip_height);
         addView(view, LayoutParams.WRAP_CONTENT, height);
