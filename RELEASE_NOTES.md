@@ -1,5 +1,13 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 2.1.10 (Jan. 26th 2018)
+
+A minor release, which introduces the following changes:
+
+- Updated `targetSdkVersion` to API level 27 (Android 8.1).
+- Updated dependency "AndroidUtil" to version 1.19.0.
+- The data structure `ListenerList` is now used for managing event listeners. 
+ 
 ## Version 2.1.9 (Dec. 26th 2017)
 
 A minor release, which introduces the following changes:
