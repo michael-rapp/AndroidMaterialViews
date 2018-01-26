@@ -35,10 +35,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import de.mrapp.android.util.ViewUtil;
+import de.mrapp.android.util.datastructure.ListenerList;
 
 import static de.mrapp.android.util.BitmapUtil.clipCircle;
 import static de.mrapp.android.util.BitmapUtil.drawableToBitmap;
@@ -46,7 +44,7 @@ import static de.mrapp.android.util.Condition.ensureNotNull;
 
 /**
  * A chip, which has been designed according to the Material design guidelines.
- *
+ * <p>
  * Refer to http://www.google.com/design/spec/components/chips.html for further information on the
  * Material design guidelines.
  *
@@ -100,7 +98,7 @@ public class Chip extends FrameLayout {
      * A set, which contains the listeners, which should be notified, when the chip has been
      * closed.
      */
-    private Set<CloseListener> listeners;
+    private ListenerList<CloseListener> listeners;
 
     /**
      * Initializes the view.
@@ -110,7 +108,7 @@ public class Chip extends FrameLayout {
      *         the type {@link AttributeSet} or null, if no attributes should be obtained
      */
     private void initialize(@Nullable final AttributeSet attributeSet) {
-        listeners = new LinkedHashSet<>();
+        listeners = new ListenerList<>();
         inflateLayout();
         Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.chip_background);
         ViewUtil.setBackground(this, background);
