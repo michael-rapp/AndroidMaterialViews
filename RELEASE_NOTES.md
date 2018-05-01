@@ -1,5 +1,12 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 2.1.11 (May 2nd 2018)
+
+A minor release, which introduces the following changes:
+
+- Updated AppCompat v7 support library to version 27.1.1.
+- Updated dependency "AndroidUtil" to version 1.20.2.
+
 ## Version 2.1.10 (Jan. 26th 2018)
 
 A minor release, which introduces the following changes:
