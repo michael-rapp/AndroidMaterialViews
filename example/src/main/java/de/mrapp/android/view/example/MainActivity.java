@@ -63,14 +63,11 @@ public class MainActivity extends AppCompatActivity {
      * Initializes the floating action buttons.
      */
     private void initializeFloatingActionButtons() {
-        smallFloatingActionButton =
-                (FloatingActionButton) findViewById(R.id.floating_action_button_small);
+        smallFloatingActionButton = findViewById(R.id.floating_action_button_small);
         smallFloatingActionButton.setOnClickListener(createFloatingActionButtonListener());
-        normalFloatingActionButton =
-                (FloatingActionButton) findViewById(R.id.floating_action_button_normal);
+        normalFloatingActionButton = findViewById(R.id.floating_action_button_normal);
         normalFloatingActionButton.setOnClickListener(createFloatingActionButtonListener());
-        largeFloatingActionButton =
-                (FloatingActionButton) findViewById(R.id.floating_action_button_large);
+        largeFloatingActionButton = findViewById(R.id.floating_action_button_large);
         largeFloatingActionButton.setOnClickListener(createFloatingActionButtonListener());
     }
 
@@ -99,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
      * Initializes the button, which allows to show or hide the floating action buttons.
      */
     private void initializeHideFloatingActionButtonsButton() {
-        Button button = (Button) findViewById(R.id.hide_floating_action_buttons);
+        Button button = findViewById(R.id.hide_floating_action_buttons);
         button.setOnClickListener(createHideFloatingActionButtonsListener());
     }
 
@@ -128,13 +125,13 @@ public class MainActivity extends AppCompatActivity {
      * Initializes all closable chips.
      */
     private void initializeChips() {
-        Chip closableChipLight = (Chip) findViewById(R.id.chip_closable_light);
+        Chip closableChipLight = findViewById(R.id.chip_closable_light);
         closableChipLight.addCloseListener(createChipCloseListener());
-        Chip closableChipDark = (Chip) findViewById(R.id.chip_closable_dark);
+        Chip closableChipDark = findViewById(R.id.chip_closable_dark);
         closableChipDark.addCloseListener(createChipCloseListener());
-        Chip closableIconChipLight = (Chip) findViewById(R.id.chip_icon_closable_light);
+        Chip closableIconChipLight = findViewById(R.id.chip_icon_closable_light);
         closableIconChipLight.addCloseListener(createChipCloseListener());
-        Chip closableIconChipDark = (Chip) findViewById(R.id.chip_icon_closable_dark);
+        Chip closableIconChipDark = findViewById(R.id.chip_icon_closable_dark);
         closableIconChipDark.addCloseListener(createChipCloseListener());
     }
 
