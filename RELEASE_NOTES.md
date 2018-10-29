@@ -1,5 +1,14 @@
 # AndroidMaterialViews - RELEASE NOTES
 
+## Version 3.0.0 (Oct. 30th 2018)
+
+A major release, which introduces the following changes:
+
+- Migrated library to Android X.
+- Updated dependency "AndroidUtil" to version 2.0.0.
+- Updated targetSdkVersion to 28.
+- The class `Chip` is now deprecated.
+
 ## Version 2.1.11 (May 2nd 2018)
 
 A minor release, which introduces the following changes:
