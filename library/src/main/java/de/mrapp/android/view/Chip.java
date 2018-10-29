@@ -20,14 +20,6 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.AttrRes;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -35,12 +27,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
+import androidx.core.content.ContextCompat;
 import de.mrapp.android.util.ViewUtil;
-import de.mrapp.android.util.datastructure.ListenerList;
+import de.mrapp.util.Condition;
+import de.mrapp.util.datastructure.ListenerList;
 
 import static de.mrapp.android.util.BitmapUtil.clipCircle;
 import static de.mrapp.android.util.BitmapUtil.drawableToBitmap;
-import static de.mrapp.android.util.Condition.ensureNotNull;
 
 /**
  * A chip, which has been designed according to the Material design guidelines.
@@ -50,7 +50,10 @@ import static de.mrapp.android.util.Condition.ensureNotNull;
  *
  * @author Michael Rapp
  * @since 1.0.0
+ * @deprecated Since version 3.0.0 this class is deprecated in favor of the <code>Chip</code>, which
+ * is now part of Android's official Design support library
  */
+@Deprecated
 public class Chip extends FrameLayout {
 
     /**
@@ -331,7 +334,7 @@ public class Chip extends FrameLayout {
      *         CloseListener}. The listener may not be null
      */
     public final void addCloseListener(@NonNull final CloseListener listener) {
-        ensureNotNull(listener, "The listener may not be null");
+        Condition.INSTANCE.ensureNotNull(listener, "The listener may not be null");
         listeners.add(listener);
     }
 
@@ -344,7 +347,7 @@ public class Chip extends FrameLayout {
      *         CloseListener}. The listener may not be null
      */
     public final void removeCloseListener(@NonNull final CloseListener listener) {
-        ensureNotNull(listener, "The listener may not be null");
+        Condition.INSTANCE.ensureNotNull(listener, "The listener may not be null");
         listeners.remove(listener);
     }
 
@@ -534,7 +537,7 @@ public class Chip extends FrameLayout {
      *         may not be null
      */
     public final void setCloseButtonIcon(@NonNull final Drawable icon) {
-        ensureNotNull(icon, "The icon may not be null");
+        Condition.INSTANCE.ensureNotNull(icon, "The icon may not be null");
         closeButton.setImageDrawable(icon);
     }
 
@@ -546,7 +549,7 @@ public class Chip extends FrameLayout {
      *         may not be null
      */
     public final void setCloseButtonIcon(@NonNull final Bitmap icon) {
-        ensureNotNull(icon, "The icon may not be null");
+        Condition.INSTANCE.ensureNotNull(icon, "The icon may not be null");
         closeButton.setImageBitmap(icon);
     }
 

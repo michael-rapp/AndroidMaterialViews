@@ -25,15 +25,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.util.Property;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import de.mrapp.android.view.CircularProgressBar;
-
-import static de.mrapp.android.util.Condition.ensureAtLeast;
+import de.mrapp.util.Condition;
 
 /**
  * An animated drawable, which is used by the view {@link CircularProgressBar}.
@@ -250,7 +249,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
      *         The thickness of the progress drawable as an {@link Integer} value in pixels
      */
     public CircularProgressDrawable(@ColorInt final int color, final int thickness) {
-        ensureAtLeast(thickness, 1, "The thickness must be at least 1");
+        Condition.INSTANCE.ensureAtLeast(thickness, 1, "The thickness must be at least 1");
         this.color = color;
         this.thickness = thickness;
         this.bounds = new RectF();

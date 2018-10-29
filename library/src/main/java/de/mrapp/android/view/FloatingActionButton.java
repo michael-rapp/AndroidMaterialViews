@@ -27,12 +27,6 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -41,15 +35,19 @@ import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+import androidx.core.content.ContextCompat;
 import de.mrapp.android.util.ThemeUtil;
 import de.mrapp.android.util.ViewUtil;
-
-import static de.mrapp.android.util.Condition.ensureAtLeast;
-import static de.mrapp.android.util.Condition.ensureNotNull;
+import de.mrapp.util.Condition;
 
 /**
  * A floating action button, which has been designed according to the Material design guidelines.
- *
+ * <p>
  * Refer to http://www.google.com/design/spec/components/buttons-floating-action- button.html for
  * further information on the Material design guidelines.
  *
@@ -625,7 +623,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         either be <code>NORMAL</code> or <code>SMALL</code>
      */
     public final void setSize(@NonNull final Size size) {
-        ensureNotNull(size, "The size may not be null");
+        Condition.INSTANCE.ensureNotNull(size, "The size may not be null");
         this.size = size;
         adaptShadow();
         adaptImageButtonSize();
@@ -769,7 +767,7 @@ public class FloatingActionButton extends RelativeLayout {
      *         The duration, which should be set, in milliseconds as a {@link Long} value
      */
     public final void setVisibilityAnimationDuration(final long duration) {
-        ensureAtLeast(duration, 0, "The animation duration must be at least 0");
+        Condition.INSTANCE.ensureAtLeast(duration, 0, "The animation duration must be at least 0");
         this.visibilityAnimationDuration = duration;
     }
 
